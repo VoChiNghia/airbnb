@@ -1,0 +1,23 @@
+@import './variable';
+// media queries
+
+@mixin Responsive($canvas) {
+  @if $canvas == XS {
+   @media only screen and (min-width: $XS) { @content; } 
+  }
+  @else if $canvas == SM {
+   @media only screen and (min-width: $SM) { @content; } 
+  }
+  @else if $canvas == MD {
+   @media only screen and (min-width: $MD) { @content; } 
+  }
+  @else if $canvas == XL {
+   @media only screen and (min-width: $XL) { @content; } 
+  }
+  @else if $canvas == XXL {
+    @media only screen and (min-width: $XXL) { @content; } 
+   }
+   @else if $canvas == XXXL {
+    @media only screen and (min-width: $XXXL) { @content; } 
+   }
+}

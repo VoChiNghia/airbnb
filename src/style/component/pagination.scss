@@ -1,0 +1,26 @@
+.pagination{
+
+    .pagination-list{
+        display: flex;
+        margin: 20px 0;
+       
+        li{
+            padding:10px;
+            &:hover{
+                cursor: pointer;
+                background-color: $hoverColor;
+            }
+
+            &.active{
+            background-color: #FF385C;
+            color: white;
+            }
+        }
+        .btn-move-left{
+            padding: 0 10px;
+        }
+        .btn-move-right{
+            padding: 0 10px;
+        }
+    }
+}

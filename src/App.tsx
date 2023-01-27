@@ -1,26 +1,99 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import {
+  unstable_HistoryRouter as HistoryRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import HomeTemplate from "./template/HomeTemplate";
+import Home from "./pages/home/Home";
+import "./style/index.scss";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
-function App() {
+
+import { createBrowserHistory } from "@remix-run/router";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import Map2 from "./pages/map/Map";
+import Usertemplate from "./template/UserTemplate";
+import Detail from "./pages/detail/Detail";
+import LoginModal from "./pages/login/LoginModal";
+import Search from "./pages/search/Search";
+import User from "./pages/user/User";
+import { USER_LOGIN, getStoreJson } from "./util/config";
+import {
+  User as UserDetail,
+  UserLogin,
+  User as UserType,
+} from "./types/authType";
+import Admin from "./pages/admin/Admin";
+import AdminTemPlate from "./template/AdminTemPlate";
+
+
+import ModalHoc from "./HOC/ModalHoc";
+
+import Trip from "./pages/trip/Trip";
+
+export const history = createBrowserHistory({ v5Compat: true });
+
+type Props = {};
+
+const App = (props: Props) => {
+ 
+  const user: UserDetail = getStoreJson(USER_LOGIN);
+
+  useEffect(() => {
+    if (user?.role === "ADMIN") {
+      history.push("/admin");
+    }
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <SkeletonTheme baseColor="#e6e6e6" highlightColor="#f5f2f2">
+        <HistoryRouter history={history}>
+          <Routes>
+            <Route path="" element={<HomeTemplate />}>
+              <Route index element={<Home />} />
+              <Route path="map" element={<Map2 />} />
+              <Route path="search">
+                <Route path=":id" element={<Search />} />
+              </Route>
+
+              <Route path="detail">
+                <Route path=":id" element={<Detail />} />
+              </Route>
+            </Route>
+
+            <Route path="/" element={<Usertemplate />}>
+              <Route path="user">
+                <Route path=":id" element={user ? <User /> : <Home />} />
+              </Route>
+              <Route path="trip" element={<Trip />} />
+            </Route>
+
+            <Route path="/admin" element={<AdminTemPlate />}>
+              <Route
+                index
+                element={
+                  user?.role === "ADMIN" ? (
+                    <Admin />
+                  ) : (
+                    <Navigate to="/" replace={true} />
+                  )
+                }
+              />
+            </Route>
+
+            <Route path="admin" element={<Admin />} />
+            <Route path="login" element={<LoginModal />} />
+          </Routes>
+        </HistoryRouter>
+      </SkeletonTheme>
+      <ModalHoc />
+    </Provider>
   );
-}
+};
 
 export default App;

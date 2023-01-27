@@ -1,0 +1,38 @@
+.search{
+    &__container{
+        
+        display: flex;
+        flex-direction: column;
+        @include Responsive(MD){
+            flex-direction: row;
+        }
+
+        &__left{
+            flex: 2;
+            display: grid;
+            grid-template-columns: 1fr;
+            
+            gap: 20px;
+            margin-right: 10px;
+
+            @include Responsive(XS){
+                grid-template-columns: 1fr 1fr;
+            }
+            @include Responsive(MD){
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        &__right{
+            flex: 1;
+            height:100vh;
+           position:sticky;
+           top: 0;
+
+           display:none;
+    @include Responsive(MD){
+        display: block;
+    }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+.detail__loading{
+    max-width:1200px;
+    margin: 0 auto;
+    &-wrapper{
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        div{
+            margin:0 10px;
+            hr{
+                margin: 40px 0;
+            }
+        }
+    }
+}

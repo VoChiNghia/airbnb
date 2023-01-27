@@ -1,0 +1,10 @@
+.admin__template{
+    display: flex;
+    padding: 0 80px;
+    &__left{
+        flex:1;
+    }
+    &__right{
+        flex: 8;
+    }
+}

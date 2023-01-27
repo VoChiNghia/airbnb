@@ -1,0 +1,42 @@
+.admin__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    &__left{
+        h1{
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+    &__right{
+        position: relative;
+        display: flex;
+        align-items: center;
+        img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+        .submenu{
+            &.active{display: block}
+            display: none;
+            position:absolute;
+            background-color: white;
+            top: 110%;
+            right: 0;
+            box-shadow: $box-shadow;
+            width: 200px;
+            ul{
+                width: 100%;
+                padding: 10px;
+                li{
+                   cursor: pointer;
+                   padding: 10px 20px;
+                }
+                
+            }
+        }
+    }
+    }

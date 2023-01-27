@@ -1,0 +1,44 @@
+
+
+
+.ReactModalPortal{
+  .ReactModal__Content{
+    width: 100%;
+    height: 100%;
+    @include Responsive(MD){
+      width:auto;
+      height: auto;
+    }
+  }
+    .modal-close{
+       display: flex;
+       justify-content: flex-end;
+       &-icon{
+        font-size: 20px;
+       }
+    }
+    
+    .ReactModal__Overlay{
+      z-index: 1060;
+      margin:0 0;
+      padding: 0;
+    }
+    .ReactModal__Overlay--after-open{
+        background-color: transparent;
+       
+        .modal__hoc{
+    
+       
+            position: relative;
+            left: 50%;
+            transform:translateX(-50%);
+            box-shadow: $box-shadow;
+            top: 10%;
+            width: 560px;
+            
+        
+        }
+    }
+    
+  }
+  

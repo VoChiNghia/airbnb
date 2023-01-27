@@ -1,0 +1,50 @@
+
+.overview{
+    padding: 20px 40px;
+   h1{
+    padding: 40px 0;
+    font-size: 18px;
+    font-weight: 500;
+   }
+    &__container{
+        display: flex;
+        justify-content: space-between;
+       &-item{
+        &-wrapper{
+            display: flex;
+            align-items: center;
+        }
+       box-shadow: $box-shadow;
+        padding: 10px 50px;
+        width: 20%;
+        .icon-wrapper{
+            .icon{
+                font-size: 20px;
+            }
+        }
+        .info{
+           margin-left: 20px;
+           span{
+            color: $textSub;
+           }
+           p{
+            font-weight: 500;
+           }
+        }
+
+        button{
+            padding: 5px 10px;
+            margin-top: 20px;
+        }
+       }
+    }
+}
+
+
+
+
+
+
+
+
+

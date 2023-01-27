@@ -1,0 +1,72 @@
+.add-image{
+	width: 400px;
+    .filupp > input[type="file"]{
+        position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	border: 0;
+    }
+	
+
+.filupp {
+    position: relative;
+	background: #242424;
+	display: block;
+	padding: 1em;
+	font-size: 1em;
+	width: 100%;
+	height: 3.5em;
+	color: white;
+	cursor: pointer;
+	box-shadow: 0 1px 3px darken(#242424,10);
+	margin-top: 20px;
+}
+	
+
+.filupp:before{
+    content: "";
+	position: absolute;
+	top: 1.5em;
+	right: .75em;
+	width: 2em;
+	height: 1.25em;
+	border: 3px solid #dd4040;
+	border-top: 0;
+	text-align: center;
+}
+	
+	
+
+.filupp:after{
+    content: "\279c";
+	transform: rotate(-90deg);
+	position: absolute;
+	top: .65em ;
+	right: .45em;
+	font-size: 2em;
+	color: #dd4040;
+	line-height: 0;
+}
+	
+
+.filupp-file-name{
+	width: 75%;
+	
+
+}
+
+.btn-update{
+	width: 100%;
+	text-align: center;
+	color: white;
+	background-color: $mainColor;
+	padding: 15px 0;
+	border-radius:10px;
+	margin-top: 20px;
+}
+
+}

@@ -1,0 +1,54 @@
+.detail__mobile__bottom{
+    @include Responsive(MD){
+        display: none;
+    }
+    position:fixed;
+    bottom:0;
+    background-color: white;
+    width: 100%;
+    padding:10px;
+    z-index: 1000;
+   
+    &__container{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+       
+        .left{
+
+        }
+        .right{
+            button{
+                background-color: $mainColor;
+            padding:12px 25px;
+            color: white;
+            border-radius: 10px;
+            }
+        }
+    }
+    .detail__mobile__date{
+        box-shadow: $box-shadow;
+        border-top: 1px solid $border;
+        .btn-close{
+            background-color:transparent;
+            padding:20px;
+            font-weight:bold;
+        }
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        transform: translateY(140%);
+        transition: all 0.3s ease-out;
+        &.active{
+            transform: translateY(0%);
+        }
+        .date-range-mobile{
+            width: 100%;
+            .rdrMonth{
+                width: 100%;
+               }
+        }
+    }
+}

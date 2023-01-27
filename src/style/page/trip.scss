@@ -1,0 +1,83 @@
+.trip{
+   margin-top: 40px;
+    min-height: 100vh;
+  
+    &__container{
+        width: 100%;
+        margin: 0 10px;
+        h1{
+            font-size: 30px;
+
+        }
+
+        hr{
+            margin: 40px 0;
+        }
+
+        .trip__info{
+            h2{
+                font-size: 20px;
+             
+            }
+            p{
+                padding: 20px 0;
+            }
+            button{
+                padding: 15px 30px;
+                background-color: transparent;
+                border:1px solid #333;
+                border-radius: 10px;
+            }
+        }
+        &__wrapper{
+              
+                @include Responsive(MD){
+                    display: flex;
+                }
+                .left{
+                    flex: 2;
+                    .trip__item{
+                        border: 1px solid $border;
+                      
+                       margin-bottom: 20px;
+                 
+                       border-radius: 10px;
+                       box-shadow: $box-shadow;
+                       overflow: hidden;
+
+                       @include Responsive(MD){
+                        display: flex;
+                        margin-right: 20px;
+                    }
+                        img{
+                            width: 200%;
+                            object-fit: cover;
+                            object-position: 0% 40%;
+                            margin-right: 20px;
+                            @include Responsive(MD){
+                                width: 200px;
+                            }
+                        }
+                        &__info{
+                            h3{
+                                padding: 10px 0;
+                                font-size: 20px;
+                                font-weight: 400;
+                            }
+                            .trip_icon{
+                                font-size: 24px;
+                              
+                                margin-right: 10px;
+                            }
+                        }
+                        
+                    }
+                }
+                .right{
+                    flex: 1;
+                }
+            
+        }
+        
+    }
+}

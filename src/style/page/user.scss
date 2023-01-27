@@ -1,0 +1,126 @@
+.user{
+    padding: 50px 0;
+    &__container{
+        display: flex;
+        flex-direction: column;
+        @include Responsive(MD){
+            flex-direction: row;
+        }
+        &__left{
+            flex: 1;
+            margin: 0 40px;
+           
+            &-wrapper{
+                border: 1px solid $border;
+                padding: 40px;
+                 border-radius: 10px;
+               .img{
+                text-align: center;
+                 img{
+                    width: 200px;
+                    height: 200px;
+                    border-radius:50%;
+                    object-fit: cover;
+                }
+                p{
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+               }
+               .icon{
+                padding:20px 0;
+                width: 30px;
+                img{
+                    width: 100%;
+                }
+               }
+            }
+            h1{
+                font-size: 20px;
+                font-weight: 400;
+                padding: 10px 0;
+            }
+            button{
+                padding:15px 25px;
+                border:1px solid #333;
+                background-color: white;
+                border-radius:10px;
+                margin-bottom: 20px;
+            }
+            p{
+                padding: 10px 0;
+             
+               
+            }
+            
+        }
+        &__right{
+            flex: 2;
+            padding:20px;
+            @include Responsive(MD){
+                padding: 0;
+            }
+             &-wrapper{
+                h1{
+                    font-size: 30px;
+                    font-weight: 500;
+                }
+                span{
+                    display: block;
+                    padding: 20px 0;
+                }
+                p{
+                    text-decoration: underline;
+                     font-weight: 400;
+                    cursor: pointer;
+                }
+                h2{
+                    font-size: 20px;
+                    padding-top: 20px;
+                   
+                }
+                hr{
+                    height: 1px;
+                    margin: 40px 0;
+                }
+                .form{
+                    &.active{
+                        display: block;
+                    }
+                    display: none;
+                    .form-group{
+                        margin: 20px 0;
+                        position: relative;
+                        p{
+                            margin: 5px 0;
+                        }
+                        input{
+                            border: 1px solid $border;
+                            padding:10px 20px;
+                           width: 100%;
+                           border-radius:8px;
+                        }
+                        .gender{
+                            display: flex;
+                        }
+                        .error{
+                            color: red;
+                            font-size: 12px;
+                            position: absolute;
+                        }
+                    }
+    
+                    .btn-save{
+                        padding:10px 20px;
+                        background-color: #333;
+                        color: #fff;
+                        border-radius:5px;
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

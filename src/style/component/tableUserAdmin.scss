@@ -1,0 +1,115 @@
+.table__user__admin{
+padding: 0 40px;
+
+&__wrapper{
+    display: flex; 
+
+    .table__user__search{
+        margin: 0 40px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        input{
+            border: 1px solid $border;
+            padding:10px 20px;
+            border-radius:20px;
+            box-shadow: $box-shadow;
+            
+        }
+        button{
+            position: absolute;
+            right: -50px;
+            padding:10px 20px;
+            background-color: white;
+            border: 1px solid $mainColor;
+            color:$mainColor;
+            border-radius:20px;
+              box-shadow: $box-shadow;
+              
+        }
+    }
+}
+
+.styled-table {
+    
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+     thead tr {
+        background-color: #FF385C;
+        color: #ffffff;
+        text-align: left;
+    }
+
+     th,
+ td {
+    padding: 12px 15px;
+}
+
+ tbody tr {
+    border-bottom: 1px solid #dddddd;
+}s
+
+ tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+ tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+ tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+tbody tr td{
+   button{
+       
+        .delete-icon{
+            font-size: 20px;
+            margin-right: 20px;
+            &:hover{
+                color: #FF385C;
+            }
+        }
+        .edit-icon{
+            font-size: 20px;
+            &:hover{
+                color: blue;
+            }
+        }
+    }
+}
+
+
+
+}
+
+.btn__add-user{
+    background-color: $mainColor;
+   color:white;
+   border-radius:5px;
+    padding: 10px 20px;
+    max-width:200px;
+    text-align: center;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+
+    &:hover{
+        opacity: 0.9;
+    }
+}
+
+
+.pagination{
+   display: flex;
+   justify-content: center;
+}
+
+}

@@ -1,0 +1,54 @@
+.home{
+    
+    margin-top: 180px;
+    transition: all 0.5s ease-in-out;
+    @include Responsive(MD){
+        margin: 40px 0;
+    }
+  
+    &__container{
+        width: 100%;
+       
+        display: grid;
+        grid-template-columns: 1fr;
+       column-gap: 10px;
+        row-gap: 30px;
+        @include Responsive(XS){
+            grid-template-columns: 1fr 1fr;
+        }
+        @include Responsive(SM){
+            grid-template-columns: 1fr 1fr; 
+        }
+        @include Responsive(MD){
+            grid-template-columns: 1fr 1fr 1fr;  
+        }
+        @include Responsive(XL){
+            grid-template-columns: 1fr 1fr 1fr 1fr ;
+        }
+        // @include Responsive(XXL){
+        //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        // }
+        @include Responsive(XXXL){
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .show-map{
+            position:fixed;
+            background: #000;
+            color: #fff;
+            border-radius: 20px;
+            padding:14px 16px ;
+            bottom: 80px;
+           left: 50%;
+           transform: translateX(-50%);
+           z-index: 100;
+           span{
+            margin: 0 10px;
+           }
+
+           @include Responsive(MD){
+            bottom: 30px;
+        }
+        }
+    }
+}
