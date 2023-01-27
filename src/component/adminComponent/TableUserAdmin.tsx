@@ -11,6 +11,7 @@ import { BsTrash } from "react-icons/bs";
 import {BiSearch} from 'react-icons/bi';
 import Pagination from "../../component/Pagination";
 import { removeVietnameseTones } from "../../util/convertViet";
+import { format } from "date-fns";
 
 
 const TableUserAdmin = () => {
@@ -23,14 +24,17 @@ const TableUserAdmin = () => {
     const inputSearch = useRef<string>('')
     const [userFilterSearch,setUserFilterSearch] = useState<User[]>(user)
     const [loadingTable,setLoadingtable] = useState<boolean>(false)
-
+  
 
     const lastPostIndex = currentPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage;
    
     useEffect(() => {
       dispatch(getAllUsedApi());
+     
     }, []);
+
+  
   
     const openModal = () => {
       dispatch(changeComponent(<ModalAddUser type="addUser" />));
@@ -48,12 +52,22 @@ const TableUserAdmin = () => {
         const inputSearchLowercase = removeVietnameseTones(inputSearch.current.toLowerCase())
         const name:string = removeVietnameseTones(item.name.toLocaleLowerCase())
         const gender:string = item.gender === true ? 'nam' : 'nữ'
+
+        //console.log(format(new Date(item.birthday), 'dd/MM/yyyy').toString().includes(inputSearchLowercase))
        
         return name === inputSearchLowercase || item.email.includes(inputSearchLowercase)
-        || item.id.toString() == inputSearchLowercase || item.birthday.toString().includes(inputSearchLowercase)
+        || item.id.toString() == inputSearchLowercase
         || gender === inputSearchLowercase
-      })
+        
+      }
+      
+      
+      )
+
+
       setUserFilterSearch(userFilterSearch)
+
+
       setTimeout(() => {
         setLoadingtable(false)
       },1000)
@@ -93,8 +107,8 @@ const TableUserAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {!loadingTable ? userFilterSearch
-            .slice(firstPostIndex, lastPostIndex)
+          {!loadingTable ? (
+           (userFilterSearch.length === 0 ? user : userFilterSearch).slice(firstPostIndex, lastPostIndex)
             .map((item: User, index: number) => (
               <tr key={index}>
                 <td>{item.id}</td>
@@ -112,9 +126,13 @@ const TableUserAdmin = () => {
                   </button>
                 </td>
               </tr>
-            )) : <h1 style={{textAlign:'center',padding:'20px'}}>loading ...</h1>}
+            ))
+          ) : <td style={{textAlign:'center',padding:'20px'}}>loading ...</td>}
 
-            {userFilterSearch.length === 0 ? <h1 style={{textAlign:'center',padding:'20px'}}>không tìm thấy kết quả phù hợp</h1> : null}
+         
+
+         
+             
 
           
         </tbody>

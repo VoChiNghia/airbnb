@@ -28,7 +28,6 @@ const TableBookRoomAdmin = () => {
     const [bookRoomFilterSearch,setBookRoomFilterSearch] = useState<BookRoom[]>(getAllBookRoom)
     const [loadingTable,setLoadingtable] = useState<boolean>(false)
   
-    console.log(getAllBookRoom)
     const lastPostIndex = currentPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage;
 
@@ -45,6 +44,7 @@ const TableBookRoomAdmin = () => {
       dispatch(deleteBookRoom(id));
       dispatch(getBookRoomApi());
     };
+    
 
     const handleSearch = () => {
       setLoadingtable(true)
@@ -57,6 +57,10 @@ const TableBookRoomAdmin = () => {
         || format(new Date(item.ngayDi), 'dd/MM/yyyy').toString().includes(inputSearchLowercase)
         || item.maNguoiDung.toString() === inputSearchLowercase
         || item.soLuongKhach.toString() === inputSearchLowercase
+
+        
+
+      
       })
       setBookRoomFilterSearch(booRoomFilterSearch)
       setTimeout(() => {
@@ -91,7 +95,7 @@ const TableBookRoomAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {!loadingTable ? bookRoomFilterSearch
+          {!loadingTable ? (bookRoomFilterSearch.length === 0 ? getAllBookRoom : bookRoomFilterSearch)
             .slice(firstPostIndex, lastPostIndex)
             .map((item: BookRoom, index: number) => (
               <tr key={index}>
@@ -111,7 +115,7 @@ const TableBookRoomAdmin = () => {
                   </button>
                 </td>
               </tr>
-            )) : "loading ..."}
+            )) :  <td style={{textAlign:'center',padding:'20px'}}>loading ...</td>}
 
           
         </tbody>

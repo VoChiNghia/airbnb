@@ -5,6 +5,7 @@ import { DispatchType } from '../../store/store'
 import TableUserAdmin from './TableUserAdmin'
 import TableLocationAdmin from './TableLocationAdmin'
 import TableBookRoomAdmin from './TableBookRoomAdmin'
+import { getAllUsedApi } from '../../redux/userReducer'
 
 type Props = {}
 
@@ -22,6 +23,7 @@ const AdminSidebar = (props: Props) => {
     if(type === 'user'){
       dispatch(changeTable(<TableUserAdmin/>))
      
+      
     }
     if(type === 'location'){
       dispatch(changeTable(<TableLocationAdmin/>))
@@ -36,6 +38,7 @@ const AdminSidebar = (props: Props) => {
 
   useEffect(()=> {
     dispatch(changeTable(<TableUserAdmin/>))
+   
    
   },[])
   return (

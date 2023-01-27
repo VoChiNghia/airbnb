@@ -18,7 +18,7 @@ import { removeVietnameseTones } from "../../util/convertViet";
 const TableLocationAdmin = () => {
 
     const dispatch: DispatchType = useDispatch();
-    const { user } = useSelector((state: RootState) => state.userReducer);
+    
     const { location } = useSelector((state: RootState) => state.locationReducer);
   
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -102,7 +102,7 @@ const TableLocationAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {!loadingTable ? locationFilterSearch
+          {!loadingTable ? (locationFilterSearch.length === 0 ? location : locationFilterSearch)
             .slice(firstPostIndex, lastPostIndex)
             .map((item: LocationDetail, index: number) => (
               <tr key={index}>
@@ -121,7 +121,7 @@ const TableLocationAdmin = () => {
                   </button>
                 </td>
               </tr>
-            )) : 'loading ...'}
+            )) :  <td style={{textAlign:'center',padding:'20px'}}>loading ...</td>}
 
           
         </tbody>

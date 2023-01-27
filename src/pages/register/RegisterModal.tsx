@@ -15,6 +15,8 @@ import LoginModal from '../login/LoginModal';
 import {BsEyeSlash} from 'react-icons/bs'
 import {AiOutlineEye} from 'react-icons/ai'
 
+const logo = require('../../assest/image/Airbnb_Logo.jpg')
+
 type Props = {
 
 }
@@ -75,7 +77,7 @@ const RegisterModal = () => {
     <div  className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
       <div className="modal">
         <div className="modal-header">
-        <img src='./image/Airbnb_Logo.jpg' width="80" alt="" />
+        <img src={logo} width="80" alt="" />
           <h1>Đăng Kí</h1>
         </div>
         <hr />

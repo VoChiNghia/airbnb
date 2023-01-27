@@ -40,8 +40,10 @@ const LoginModal = () => {
   const user:User = getStoreJson(USER_LOGIN)
 
     useEffect(() => {
-      if(user?.role === 'ADMIN') {
-        history.push('/admin')
+      if(user){
+        if(user?.role === 'ADMIN') {
+          history.push('/admin')
+        }
       }
     },[])
 
