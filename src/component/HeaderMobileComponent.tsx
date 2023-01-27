@@ -55,8 +55,13 @@ const HeaderMobileComponent = (props: Props) => {
 
 const handleClick = () => {
     if(searchRef.current){
-      (searchRef.current as HTMLElement).classList.remove('active')
+      (searchRef.current as HTMLElement).classList.toggle('active')
     }
+}
+const handleClickOutside = () => {
+  if(searchRef.current){
+    (searchRef.current as HTMLElement).classList.remove('active')
+  }
 }
 
 const handleSubmit = () => {
@@ -72,7 +77,7 @@ const handleClickItemSearch = (value:string,id:number) =>{
   setLocationInput(value)
   setLocationId(id)
 }
-useOnClickOutside(wrapper,handleClick)
+useOnClickOutside(wrapper,handleClickOutside)
 
   return (
     <div ref={wrapper} className="header__mobile">

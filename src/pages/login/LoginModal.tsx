@@ -14,6 +14,8 @@ import RegisterModal from '../register/RegisterModal';
 import {BsEyeSlash} from 'react-icons/bs'
 import {AiOutlineEye} from 'react-icons/ai'
 import { User } from '../../types/authType';
+
+const logo = require('../../assest/image/Airbnb_Logo.jpg')
 type Props = {
    
 }
@@ -57,7 +59,7 @@ const LoginModal = () => {
     <div  className="modal-wrapper" >
       <div className="modal">
         <div className="modal-header">
-          <img src='./image/Airbnb_Logo.jpg' width="80" alt="" />
+          <img src={logo} width="80" alt="" />
           <h1>Đăng nhập</h1>
         </div>
         <hr />
