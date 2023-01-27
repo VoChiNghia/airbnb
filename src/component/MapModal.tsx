@@ -42,7 +42,7 @@ const MapModal = (props: Props) => {
   
       
     }}
-    mapStyle="mapbox://styles/mapbox/streets-v9"
+    mapStyle="mapbox://styles/vochinghia/cldenwz1t000101n1p253iqqn"
     mapboxAccessToken='pk.eyJ1Ijoidm9jaGluZ2hpYSIsImEiOiJjbGNwczZuMzMxdGIxM25yeTIyMjh1ZXFiIn0.BBrTFz4H4l5Ar49w4yR-cw'
    
   >
