@@ -17,7 +17,7 @@ import { CustommerType, SelectionDate } from "../types/detailType";
 import { format, compareAsc } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../store/store";
-import { getLocationApi } from "../redux/location";
+import { getLocationAddressApi, getLocationApi } from "../redux/location";
 import {removeVietnameseTones} from "../util/convertViet";
 import { history } from "../App";
 import RegisterModal from "../pages/register/RegisterModal";
@@ -25,10 +25,14 @@ import { changeComponent, setIsOpen } from "../redux/modalReducer";
 import LoginModal from "../pages/login/LoginModal";
 import { getRoomByLocationApi } from "../redux/roomReducer";
 import { getBookRoomByUserApi } from "../redux/bookRoomReducer";
+import { useTranslation } from 'react-i18next';
+import Language from "./Language";
 const Logo = require("../assest/image/Airbnb_Logo.jpg")
 type Props = {};
 
 const Header = (props: Props) => {
+
+  const { t } = useTranslation()
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [customers, setCustomers] = useState<CustommerType>({
@@ -39,10 +43,9 @@ const Header = (props: Props) => {
 
   const [locationInput,setLocationInput] = useState<string>('')
   const [locationId,setLocationId] = useState<number>(1)
-  const {location} = useSelector((state:RootState) => state.locationReducer)
+  const {address} = useSelector((state:RootState) => state.locationReducer)
   const dispatch:DispatchType = useDispatch()
-  
-  
+
 
   const selectionRange: SelectionDate = {
     startDate: startDate,
@@ -62,13 +65,13 @@ const Header = (props: Props) => {
 
   useEffect(()=>{
     const getAllLocation = () =>{
-      const action = getLocationApi()
+      const action = getLocationAddressApi()
       dispatch(action)
   }
     getAllLocation()
   },[])
  
-  const arrFilter = location?.filter((location) => {
+  const arrFilter = address?.filter((location) => {
     const vt = removeVietnameseTones(location.tenViTri.toLocaleLowerCase())
     const province = removeVietnameseTones(location.tinhThanh.toLocaleLowerCase())
    return  vt.includes(removeVietnameseTones(locationInput.toLocaleLowerCase())) ||
@@ -93,16 +96,10 @@ const Header = (props: Props) => {
     setEndDate(date.selection.endDate); // native Date object
   };
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      if (itemCenterRef.current) {
-        (itemCenterRef.current as HTMLElement).classList.remove("active");
-      }
-      document.querySelector(".header")?.classList.add("fixed");
-    } else {
-      document.querySelector(".header")?.classList.remove("fixed");
-    }
-  });
+  const handleDislayLanguage = () => {
+    dispatch(changeComponent(<Language/>))
+    dispatch(setIsOpen(true))
+  }
   const handleClick = () => {
     (document.querySelector(".submenu-user") as HTMLElement).classList.toggle(
       "active"
@@ -213,15 +210,15 @@ const Header = (props: Props) => {
         >
           <div className="header__container-center-wrapper">
             <div>
-              <p>điểm bất kỳ</p>
+              <p>{t('content.anywhere')}</p>
             </div>
             <span className="line"></span>
             <div>
-              <p>tuần bất kỳ</p>
+              <p>{t('content.anyweek')}</p>
             </div>
             <span className="line"></span>
             <div>
-              <p>Thêm khách</p>
+              <p>{t('content.addguests')}</p>
               <BiSearch className="search-icon" />
             </div>
           </div>
@@ -231,9 +228,9 @@ const Header = (props: Props) => {
             onClick={handleClickItemCenter}
           >
             <div className="header__container-second-wrapper-top">
-              <p>Chỗ ở</p>
-              <p>Trải nghiệm</p>
-              <p>trải nghiệm trực tuyến</p>
+              <p>{t('content.stay')}</p>
+              <p>{t('content.experience')}</p>
+              <p>{t('content.onlineExperiences')}</p>
             </div>
             <div className="header__container-second-wrapper-bottom">
               <div className="wraper">
@@ -444,9 +441,9 @@ const Header = (props: Props) => {
         </div>
         <div className="header__container-right">
           <div className="header__container-right-item left">
-            <p>Cho thuê chỗ ở qua Airbnb</p>
+            <p>{t('content.airbnbyourhome')}</p>
           </div>
-          <div className="header__container-right-item center">
+          <div className="header__container-right-item center" onClick={handleDislayLanguage}>
             <RiGlobalLine className="ciGlobe" />
           </div>
           <div
@@ -462,32 +459,32 @@ const Header = (props: Props) => {
             <div className="submenu-user">
               {user ? (
                 <ul>
-                  <li>Tin nhắn</li>
-                  <NavLink to={`/trip/${user.id}`}> <li className="active">Chuyến đi</li></NavLink>
-                  <li>Yêu thích</li>
+                  <li>{t('content.message')}</li>
+                  <NavLink to={`/trip/${user.id}`}> <li className="active">{t('content.trip')}</li></NavLink>
+                  <li>{t('content.favorites')}</li>
                   <hr />
-                  <li>Cho thuê chỗ ở qua Airbnb</li>
-                  <li>Tổ chức trải nghiệm</li>
-                  <NavLink to={`/user/${user?.id}`}> <li className="active">Tài khoản</li></NavLink>
+                  <li>{t('content.airbnbyourhome')}</li>
+                  <li>{t('content.hostanexperience')}</li>
+                  <NavLink to={`/user/${user?.id}`}> <li className="active">{t('content.account')}</li></NavLink>
                   <hr />
-                  <li>Trợ giúp </li>
-                  <li className="active" onClick={logout}>Đăng xuất</li>
+                  <li>{t('content.help')}</li>
+                  <li className="active" onClick={logout}>{t('content.logout')}</li>
                 </ul>
               ) : (
                 <>
                   <ul>
                     <li className="active" onClick={() => handleChangeComponent('register')}>
-                      Đăng kí
+                    {t('content.register')}
                     </li>
                     <li className="active" onClick={() => handleChangeComponent('login')}>
-                      Đăng nhập
+                    {t('content.login')}
                     </li>
                   </ul>
                   <hr className="line" />
                   <ul>
-                    <li>Cho thuê chỗ ở qua Airbnb</li>
-                    <li>Tổ chức trải nghiệm</li>
-                    <li>trợ giúp</li>
+                    <li>{t('content.airbnbyourhome')}</li>
+                    <li>{t('content.hostanexperience')}</li>
+                    <li>{t('content.help')}</li>
                   </ul>
                 </>
               )}

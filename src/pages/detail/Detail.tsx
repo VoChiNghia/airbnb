@@ -34,6 +34,8 @@ import DetailMobileBottom from "../../component/DetailMobileBottom";
 import DisplayMore from "../../component/DisplayMore";
 import AllFeature from "../../component/AllFeature";
 import { history } from "../../App";
+import { useTranslation } from 'react-i18next';
+
 
 type Props = {};
 
@@ -50,7 +52,7 @@ const Detail = (props: Props) => {
     children: 1,
     baby: 1,
   });
-
+  const { t } = useTranslation()
   const user = getStoreJson(USER_LOGIN)
   const startDateFormat = format(startDate, "dd/MM/yyyy");
   const endDateFormat = format(endDate, "dd/MM/yyyy");
@@ -173,11 +175,11 @@ const Detail = (props: Props) => {
         <div>Tambon Thep Krasatti, Chang Wat Phuket, Thái Lan</div>
         <div>
           <p>
-            <FiShare /> Chia se
+            <FiShare /> {t('content.share')}
           </p>
           <p>
             {" "}
-            <BiHeart /> Lưu
+            <BiHeart /> {t('content.save')}
           </p>
         </div>
       </div>
@@ -228,7 +230,7 @@ const Detail = (props: Props) => {
         <div className="detail__body-left-desc">
           <img src="../image/aircover.jpg" alt="" width={150} />
           <p>{roomById?.moTa}</p>
-          <h3 onClick={handleDisplayMore}>Tìm hiểu thêm</h3>
+          <h3 onClick={handleDisplayMore}>{t('content.showmore')}</h3>
         </div>
         <hr />
 
@@ -251,7 +253,7 @@ const Detail = (props: Props) => {
             hồ bơi tuyệt vời và những cánh đồng.
           </p>
 
-          <span>Hiển thị thêm</span>
+          <span>{t('content.showmore')}</span>
         </div>
 
         <hr />
@@ -290,7 +292,7 @@ const Detail = (props: Props) => {
           </div>
 
           <div className="feature-display">
-            <button onClick={handleDisplayAllFeature}>Hiển thị tất cả tiện nghi</button>
+            <button onClick={handleDisplayAllFeature}>{t('content.allfeature')}</button>
           </div>
         </div>
 
@@ -411,7 +413,7 @@ const Detail = (props: Props) => {
             </div>
           </div>
 
-          <button className="checkRoom" onClick={handleSubmit}>Đặt phòng</button>
+          <button className="checkRoom" onClick={handleSubmit}>{t('content.bookroom')}</button>
 
           <div className="price">
             <span>bạn vẫn chưa bị trừ tiền</span>

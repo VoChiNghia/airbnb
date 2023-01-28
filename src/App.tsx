@@ -8,8 +8,6 @@ import {
 import HomeTemplate from "./template/HomeTemplate";
 import Home from "./pages/home/Home";
 import "./style/index.scss";
-import { Provider } from "react-redux";
-import store from "./store/store";
 
 
 import { createBrowserHistory } from "@remix-run/router";
@@ -30,19 +28,20 @@ import {
 import Admin from "./pages/admin/Admin";
 import AdminTemPlate from "./template/AdminTemPlate";
 
-
+import { I18nextProvider } from "react-i18next";
+import i18n from "./language/i18n";
 import ModalHoc from "./HOC/ModalHoc";
 
 import Trip from "./pages/trip/Trip";
+
 
 export const history = createBrowserHistory({ v5Compat: true });
 
 type Props = {};
 
 const App = (props: Props) => {
- 
   const user: UserDetail = getStoreJson(USER_LOGIN);
-
+  
   useEffect(() => {
     if (user?.role === "ADMIN") {
       history.push("/admin");
@@ -50,49 +49,51 @@ const App = (props: Props) => {
   }, []);
 
   return (
-    <Provider store={store}>
-      <SkeletonTheme baseColor="#e6e6e6" highlightColor="#f5f2f2">
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route path="" element={<HomeTemplate />}>
-              <Route index element={<Home />} />
-              <Route path="map" element={<Map2 />} />
-              <Route path="search">
-                <Route path=":id" element={<Search />} />
+    <>
+      <I18nextProvider i18n={i18n}>
+        <SkeletonTheme baseColor="#e6e6e6" highlightColor="#f5f2f2">
+          <HistoryRouter history={history}>
+            <Routes>
+              <Route path="" element={<HomeTemplate />}>
+                <Route index element={<Home />} />
+                <Route path="map" element={<Map2 />} />
+                <Route path="search">
+                  <Route path=":id" element={<Search />} />
+                </Route>
+
+                <Route path="detail">
+                  <Route path=":id" element={<Detail />} />
+                </Route>
               </Route>
 
-              <Route path="detail">
-                <Route path=":id" element={<Detail />} />
+              <Route path="/" element={<Usertemplate />}>
+                <Route path="user">
+                  <Route path=":id" element={user ? <User /> : <Home />} />
+                </Route>
+                <Route path="trip/:id" element={<Trip />} />
               </Route>
-            </Route>
 
-            <Route path="/" element={<Usertemplate />}>
-              <Route path="user">
-                <Route path=":id" element={user ? <User /> : <Home />} />
+              <Route path="/admin" element={<AdminTemPlate />}>
+                <Route
+                  index
+                  element={
+                    user?.role === "ADMIN" ? (
+                      <Admin />
+                    ) : (
+                      <Navigate to="/" replace={true} />
+                    )
+                  }
+                />
               </Route>
-              <Route path="trip/:id" element={<Trip />} />
-            </Route>
 
-            <Route path="/admin" element={<AdminTemPlate />}>
-              <Route
-                index
-                element={
-                  user?.role === "ADMIN" ? (
-                    <Admin />
-                  ) : (
-                    <Navigate to="/" replace={true} />
-                  )
-                }
-              />
-            </Route>
-
-            <Route path="admin" element={<Admin />} />
-            <Route path="login" element={<LoginModal />} />
-          </Routes>
-        </HistoryRouter>
-      </SkeletonTheme>
+              <Route path="admin" element={<Admin />} />
+              <Route path="login" element={<LoginModal />} />
+            </Routes>
+          </HistoryRouter>
+        </SkeletonTheme>
+      </I18nextProvider>
       <ModalHoc />
-    </Provider>
+    </>
   );
 };
 

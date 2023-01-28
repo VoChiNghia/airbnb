@@ -1,0 +1,40 @@
+{
+    "content": {
+        "functional": "Functional",
+        "class": "Class",
+        "text": "This is text",
+        "anywhere": "Anywhere",
+        "anyweek": "Any week",
+        "addguests":"Add guests",
+        "airbnbyourhome":"Airbnb your home",
+
+        "message": "Message",
+        "trip":"Trip",
+        "favorites":"Favorites",
+        "hostanexperience":"Host an experience",
+        "account": "Account",
+        "help":"Help",
+        "logout":"Logout",
+
+        "register": "register",
+        "login": "Login",
+
+        "stay": "Stay",
+        "experience": "Experience",
+        "onlineExperiences": "Online Experience",
+        "map":"Showing map",
+        "share": "Share",
+        "save": "Save",
+        "showmore": "Show more",
+        "bookroom": "Book room",
+        "allfeature":"Display all features",
+        "choselanguage":"Choose a language and region"
+        
+        
+
+
+
+        
+        
+    }
+}

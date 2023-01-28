@@ -10,7 +10,7 @@ import { removeVietnameseTones } from '../util/convertViet'
 import { useDispatch, useSelector } from 'react-redux'
 import { DispatchType, RootState } from '../store/store'
 import { MdLocationPin } from 'react-icons/md'
-import { getLocationApi } from '../redux/location'
+import { getLocationAddressApi, getLocationApi } from '../redux/location'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { getRoomByLocationApi } from '../redux/roomReducer'
 import { DateRange } from 'react-date-range'
@@ -21,7 +21,7 @@ const HeaderMobileComponent = (props: Props) => {
 
   const [locationInput,setLocationInput] = useState<string>('')
   const [locationId,setLocationId] = useState<number>(1)
-  const {location} = useSelector((state:RootState) => state.locationReducer)
+  const {address} = useSelector((state:RootState) => state.locationReducer)
   const dispatch:DispatchType = useDispatch()
   const searchRef = useRef(null)
   const wrapper = useRef(null)
@@ -30,7 +30,7 @@ const HeaderMobileComponent = (props: Props) => {
  
   useEffect(()=>{
     const getAllLocation = () =>{
-      const action = getLocationApi()
+      const action = getLocationAddressApi()
       dispatch(action)
   }
     getAllLocation()
@@ -44,7 +44,7 @@ const HeaderMobileComponent = (props: Props) => {
  
 
 
-  const arrFilter = location?.filter((location) => {
+  const arrFilter = address?.filter((location) => {
     const vt = removeVietnameseTones(location.tenViTri.toLocaleLowerCase())
     const province = removeVietnameseTones(location.tinhThanh.toLocaleLowerCase())
    return  vt.includes(removeVietnameseTones(locationInput.toLocaleLowerCase())) ||

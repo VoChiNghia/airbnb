@@ -8,13 +8,15 @@ import {BsFillMapFill} from 'react-icons/bs'
 import CardLoading from '../../loading/CardLoading'
 import { NavLink } from 'react-router-dom'
 import LazyLoad from 'react-lazyload'
-
+import { useTranslation } from 'react-i18next';
 
 
 type Props = {}
 
 const Home = (props: Props) => {
 
+  
+  const { t } = useTranslation()
   const {roomState,loading} = useSelector((state:RootState) => state.roomReducer)
 
 
@@ -51,7 +53,7 @@ const Home = (props: Props) => {
 
           <NavLink to='/map'>
           <div className="show-map">
-           <span > bản đồ</span>
+           <span>{t('content.map')}</span>
             <BsFillMapFill/>
             
           </div>

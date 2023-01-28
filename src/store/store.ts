@@ -8,6 +8,7 @@ import bookRoomReducer from '../redux/bookRoomReducer'
 import tableModal from '../redux/tableModal'
 
 
+
 const store = configureStore({
    reducer:{
     roomReducer,
@@ -16,7 +17,8 @@ const store = configureStore({
     userReducer,
     modalReducer,
     bookRoomReducer,
-    tableModal
+    tableModal,
+  
    
    },
    middleware: (getDefaultMiddleware) => getDefaultMiddleware({

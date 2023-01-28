@@ -4,11 +4,12 @@ export interface LocationDetail {
     tinhThanh: string;
     quocGia:   string;
     hinhAnh:   string;
-    latitude:number
-    longitude:number
+    latitude?:number
+    longitude?:number
 }
 
 export interface LocationState {
     location: LocationDetail[]
     longitudeAndLatitude:[] | null
+    address:LocationDetail[] | []
 }

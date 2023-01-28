@@ -1,13 +1,5 @@
 .home-template{
 
-    .header.fixed +  main{
-        .home{
-           margin-top: 200px;
-            transition: none;
-        }
-       
-    }
-
 
     padding: 0 0px;
     @include Responsive(MD){

@@ -1,0 +1,35 @@
+{
+    "content": {
+        "functional": "Hàm",
+        "class": "Lớp",
+        "text": "Đây là văn bản",
+        "anywhere": "Địa điểm bất kỳ",
+        "anyweek": "Tuần bất kỳ",
+         "addguests":"thêm khách",
+          "airbnbyourhome":"Cho thuê chỗ ở qua Airbnb",
+
+          "message": "Tin nhắn",
+          "trip":"Chuyến đi",
+          "favorites":"Yêu thích",
+          "hostanexperience":"Tổ chức trải nghiệm",
+          "account": "Tài khoản",
+          "help":"Trợ giúp",
+          "logout":"Đăng xuất",
+
+          "register": "Đăng kí",
+          "login": "Đăng nhập",
+
+          "stay": "Chỗ ở",
+          "experience": "Trải nghiệm",
+          "onlineExperiences": "Trải nghiệm trực tuyến",
+          "map":"Bản đồ",
+
+          "share": "Chia sẻ",
+          "save": "Lưu",
+          "showmore": "Tìm hiểu thêm",
+        "bookroom": "Đặt phòng",
+        "allfeature":"Hiển thị tất cả tiện nghi",
+        "choselanguage":"Chọn ngôn ngữ và quốc gia"
+
+    }
+}

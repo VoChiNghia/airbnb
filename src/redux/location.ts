@@ -15,6 +15,7 @@ import { AxiosResponse } from 'axios'
 const initialState:LocationState = {
    location:[],
    longitudeAndLatitude:null,
+   address:[]
 }
 
 
@@ -28,11 +29,14 @@ const locationReducer = createSlice({
         },
         longAndLat:(state:LocationState,action:PayloadAction<any>) => {
             state.longitudeAndLatitude = action.payload
+        },
+        addresReducer:(state:LocationState,action:PayloadAction<any>) => {
+          state.address = action.payload
         }
     }
 })
 
-export const {getLocation,longAndLat} = locationReducer.actions
+export const {getLocation,longAndLat,addresReducer} = locationReducer.actions
 export default locationReducer.reducer
 
 
@@ -67,6 +71,22 @@ export const getLocationApi = () => {
         }
      }
 }
+
+export const getLocationAddressApi = () => {
+  return async (dispatch:DispatchType) => {
+     
+      try {
+          
+       const res:AxiosResponse = await http.get('/api/vi-tri')
+        dispatch(addresReducer(res.data.content))
+ 
+      } catch (error:any) {
+   
+       alert(error?.response.data.content)
+      }
+   }
+}
+
 
 export const deleteLocation = (id:number) => {
     return async (dispatch:DispatchType) => {

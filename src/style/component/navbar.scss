@@ -37,10 +37,15 @@
         img{
             width: 25px;
             color: $textSub;
+            
         }
         p{
             font-size: 10px;
         }
+        &:active img{
+          @include Active-button;
+        }
+       
     }
 
     .swiper-button-next {

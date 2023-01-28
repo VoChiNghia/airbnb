@@ -2,9 +2,7 @@
     
     margin-top: 180px;
     transition: all 0.5s ease-in-out;
-    @include Responsive(MD){
-        margin: 40px 0;
-    }
+  
   
     &__container{
         width: 100%;
