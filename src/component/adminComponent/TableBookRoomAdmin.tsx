@@ -122,7 +122,7 @@ const TableBookRoomAdmin = () => {
       </table>
       <div className="pagination">
             <Pagination
-              totalPages={Number(bookRoomFilterSearch.length)}
+              totalPages={Number(getAllBookRoom.length)}
               postPerPage={postPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

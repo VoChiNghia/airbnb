@@ -51,7 +51,9 @@ const HeaderMobileBottom = (props: Props) => {
               
           </div>
          {user &&  <div>
+          <NavLink to={`/trip/${user.id}`}>
           <FaAirbnb className='icon'/>
+          </NavLink>
               <p>chuyến đi</p>
           </div>}
           <div onClick={hanndleLogin}>

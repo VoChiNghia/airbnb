@@ -70,7 +70,7 @@ const App = (props: Props) => {
               <Route path="user">
                 <Route path=":id" element={user ? <User /> : <Home />} />
               </Route>
-              <Route path="trip" element={<Trip />} />
+              <Route path="trip/:id" element={<Trip />} />
             </Route>
 
             <Route path="/admin" element={<AdminTemPlate />}>

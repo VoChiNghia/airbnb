@@ -94,7 +94,7 @@ const Header = (props: Props) => {
   };
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
       if (itemCenterRef.current) {
         (itemCenterRef.current as HTMLElement).classList.remove("active");
       }
@@ -463,7 +463,7 @@ const Header = (props: Props) => {
               {user ? (
                 <ul>
                   <li>Tin nhắn</li>
-                  <NavLink to='/trip'> <li className="active">Chuyến đi</li></NavLink>
+                  <NavLink to={`/trip/${user.id}`}> <li className="active">Chuyến đi</li></NavLink>
                   <li>Yêu thích</li>
                   <hr />
                   <li>Cho thuê chỗ ở qua Airbnb</li>

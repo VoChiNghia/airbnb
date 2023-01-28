@@ -16,6 +16,9 @@
        &-icon{
         font-size: 20px;
        }
+       &:active{
+        @include Active-button;
+    }
     }
     
     .ReactModal__Overlay{

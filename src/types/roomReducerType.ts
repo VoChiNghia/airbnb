@@ -20,6 +20,7 @@ export interface Room {
     hinhAnh:  string;
     ngayDen?:      Date;
     ngayDi?:       Date;
+    roomId?:number;
 }
 
 export interface CommentDetail {

@@ -21,3 +21,10 @@
     @media only screen and (min-width: $XXXL) { @content; } 
    }
 }
+
+
+@mixin Active-button {
+  transform: translateY(2px);
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+transition: all 0.2s ease;
+}

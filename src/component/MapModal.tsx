@@ -6,6 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { DispatchType, RootState } from '../store/store';
 import { getLocationApi } from '../redux/location';
+
+
+
+
+
+
 type Props = {}
 
 const MapModal = (props: Props) => {

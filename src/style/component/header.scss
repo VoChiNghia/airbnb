@@ -13,9 +13,10 @@
     left: 0;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
    padding: 0 80px;
-
+   
  
   }
+  
   
     &__container{
         border-bottom: 1px solid $border;
@@ -64,6 +65,10 @@
                 align-items: center;
 
                 position: relative;
+
+                &:active{
+                    @include Active-button;
+                }
                 .submenu-user.active{
                     display:block;
                 }
@@ -77,6 +82,7 @@
                     border-radius: 10px;
                     margin-top: 10px;
                     box-shadow: 0 1px 2px rgb(0 0 0 / 10%), 0 4px 12px rgb(0 0 0 / 10%);
+                    
                     .line{
                         color: gray;
                         width: 100%;
@@ -107,6 +113,7 @@
                 .biMenu, .hiUserCircle{
                     font-size: 18px;
                     line-height: 28px;
+                    
                 }
                 .hiUserCircle{
                     color: gray;
@@ -165,6 +172,7 @@
                         font-size: 26px;
                         margin:0;
                         margin-left:10px;
+                       
                     }
                 }
             }
@@ -443,8 +451,9 @@
                                 font-size: 25px;
                                 color: white;
                             }
-                            &:hover{
-                                opacity: 0.8;
+                           
+                            &:active{
+                                @include Active-button;
                             }
                         }
                     }

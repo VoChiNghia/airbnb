@@ -12,14 +12,35 @@
             display: grid;
             grid-template-columns: 1fr;
             
-            gap: 20px;
+            gap: 10px;
             margin-right: 10px;
+
+            
+           
+           
 
             @include Responsive(XS){
                 grid-template-columns: 1fr 1fr;
             }
             @include Responsive(MD){
                 grid-template-columns: 1fr 1fr 1fr;
+                // .lazyload-wrapper{
+                //     width:220px;
+                //     height: 220;
+                //     .card-img{
+                //         height: 220px;
+                //     }
+                // }
+                
+            }
+            @include Responsive(XXL){
+                 .lazyload-wrapper{
+                        width:280px;
+                        height: 220;
+                        .card-img{
+                            height: 280px;
+                        }
+                    }
             }
         }
 

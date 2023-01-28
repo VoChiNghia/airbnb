@@ -104,6 +104,9 @@ tbody tr td{
     &:hover{
         opacity: 0.9;
     }
+    &:active{
+        @include Active-button;
+    }
 }
 
 

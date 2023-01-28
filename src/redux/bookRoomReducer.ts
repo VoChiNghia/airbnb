@@ -63,7 +63,7 @@ export const getBookRoomApi = () => {
             const response = await http.get(`/api/phong-thue/${room.maPhong}`)
             
             
-            arr.push({...response.data.content,ngayDen:room.ngayDen,ngayDi:room.ngayDi})
+            arr.push({...response.data.content,ngayDen:room.ngayDen,ngayDi:room.ngayDi,roomId:room.id})
           
            dispatch(tripReducer([...arr]))
         })
@@ -83,10 +83,23 @@ export const getBookRoomApi = () => {
         try {
          const res:AxiosResponse = await http.delete(`/api/dat-phong/${id}`)
         
-        alert(res.data.message)
+         Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: res.data.message,
+            showConfirmButton: true,
+            timer: 1500
+          })
         
         } catch (error:any) {
-         alert(error?.response.data.content)
+         
+         Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title:error?.response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
      }
 }
