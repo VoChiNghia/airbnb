@@ -173,10 +173,10 @@ export const updateUserById = (id:number,data:UserModal) => {
 
 
 export const updateAvataApi = (data:FormData) => {
-    return async (dispatch:DispatchType) => {
+    return async () => {
         try {
          const res:AxiosResponse = await http.post('/api/users/upload-avatar',data)
-         console.log(res)
+       
          if(res.data.statusCode === 200){
           Swal.fire({
             position: 'center',
@@ -189,7 +189,7 @@ export const updateAvataApi = (data:FormData) => {
         
          
         } catch (error:any) {
-          console.log(error)
+          
          Swal.fire({
             position: 'center',
             icon: 'error',

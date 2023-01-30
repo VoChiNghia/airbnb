@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { BookRoom, CommentDetail, Room } from '../types/roomReducerType'
+import { BookRoom, CommentDetail, CommentModal, Room } from '../types/roomReducerType'
 import {http} from '../util/config'
 import { DispatchType } from '../store/store'
 import { AxiosResponse } from 'axios'
+import Swal from 'sweetalert2'
 
 interface initialStateType {
     roomState:Room[] | null
@@ -90,5 +91,30 @@ export const getRoomByLocationApi = (id:number) => {
     return async (dispatch: DispatchType) => {
         const response:AxiosResponse = await http.get(`/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${id}`)
         dispatch(getRoom(response.data.content))
+    }
+}
+
+export const postCommentApi = (data: CommentModal) => {
+    return async (dispatch:DispatchType) => {
+       try {
+        const res:AxiosResponse = await http.post('/api/binh-luan',data)
+        if(res.data.statusCode === 201){
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'thành công',
+              showConfirmButton: false,
+              timer: 1500
+            })
+           }
+       } catch (error:any) {
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: error?.response.data.message,
+            showConfirmButton: false,
+            timer: 1500
+          })
+       }
     }
 }

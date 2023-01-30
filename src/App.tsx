@@ -19,7 +19,7 @@ import Detail from "./pages/detail/Detail";
 import LoginModal from "./pages/login/LoginModal";
 import Search from "./pages/search/Search";
 import User from "./pages/user/User";
-import { USER_LOGIN, getStoreJson } from "./util/config";
+import { USER_LOGIN, getStore, getStoreJson, saveStore } from "./util/config";
 import {
   User as UserDetail,
   UserLogin,
@@ -41,13 +41,15 @@ type Props = {};
 
 const App = (props: Props) => {
   const user: UserDetail = getStoreJson(USER_LOGIN);
+ 
   
   useEffect(() => {
     if (user?.role === "ADMIN") {
       history.push("/admin");
     }
+  
   }, []);
-
+  
   return (
     <>
       <I18nextProvider i18n={i18n}>

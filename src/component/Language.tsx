@@ -1,5 +1,6 @@
 import React,{useState} from 'react'
 import { useTranslation } from 'react-i18next';
+import { saveStore } from '../util/config';
 
 type Props = {}
 
@@ -11,9 +12,10 @@ const Language = (props: Props) => {
     const handleClick = (language:string) => {
         setLoading(true)
       
-        console.log(i18n.language)
+       
        setTimeout(() => {
         i18n.changeLanguage(language)
+      
         setLoading(false)
         
        },1500)

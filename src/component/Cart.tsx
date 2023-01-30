@@ -32,7 +32,7 @@ const Cart = ({data}: Props) => {
   const date = getRandomDate()
   const day = date.getDate() <= 0 ? 1 : date.getDate()
   const month = date.getMonth() <= 0 ? 2 : date.getMonth()
-  var slideCount = document.querySelectorAll('.card-img img').length
+
 const cardImg:any = useRef(null)
 const prev:any = useRef(null)
 const next:any = useRef(null)
@@ -58,10 +58,10 @@ const next:any = useRef(null)
         modules={[Pagination,Navigation]}
         className="mySwiper"
       >
-        <SwiperSlide><img src={data.hinhAnh} alt="" width="100%"/></SwiperSlide>
-        <SwiperSlide><img src={data.hinhAnh} alt="" width="100%"/></SwiperSlide>
-        <SwiperSlide><img src={data.hinhAnh} alt="" width="100%"/></SwiperSlide>
-        <SwiperSlide><img src={data.hinhAnh} alt="" width="100%"/></SwiperSlide>
+        <SwiperSlide><img src={data?.hinhAnh} alt="" width="100%"/></SwiperSlide>
+        <SwiperSlide><img src={data?.hinhAnh} alt="" width="100%"/></SwiperSlide>
+        <SwiperSlide><img src={data?.hinhAnh} alt="" width="100%"/></SwiperSlide>
+        <SwiperSlide><img src={data?.hinhAnh} alt="" width="100%"/></SwiperSlide>
         
       </Swiper>
      

@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 
 import translationEN from './en/translation.json';
 import translationVI from './vn/translation.json';
+import { getStore } from '../util/config';
 
 
 
@@ -16,7 +17,8 @@ import translationVI from './vn/translation.json';
             translation: translationVI
         }
     };
-    
+   
+   
     i18n
         .use(Backend)
         .use(initReactI18next)

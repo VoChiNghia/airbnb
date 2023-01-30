@@ -39,3 +39,12 @@ export interface BookRoom {
     soLuongKhach: number;
     maNguoiDung:  number;
 }
+
+export interface CommentModal {
+   
+    maPhong:         number;
+    maNguoiBinhLuan: number;
+    ngayBinhLuan:    string;
+    noiDung:         string;
+    saoBinhLuan:     number;
+}

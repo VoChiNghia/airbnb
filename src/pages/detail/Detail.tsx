@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { bookRoomApi, getCommentApi, getRoomByIdApi, loadingReducer } from "../../redux/roomReducer";
+import { bookRoomApi, getCommentApi, getRoomByIdApi, loadingReducer, postCommentApi } from "../../redux/roomReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../store/store";
 import { NavLink, useLocation, useParams } from "react-router-dom";
@@ -23,7 +23,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css';
 import { format } from "date-fns";
 import { CustommerType, SelectionDate } from "../../types/detailType";
-import { BookRoom, CommentDetail } from "../../types/roomReducerType";
+import { BookRoom, CommentDetail, CommentModal } from "../../types/roomReducerType";
 import Detailloading from "../../loading/Detailloading";
 
 import { USER_LOGIN, getStoreJson } from "../../util/config";
@@ -35,6 +35,8 @@ import DisplayMore from "../../component/DisplayMore";
 import AllFeature from "../../component/AllFeature";
 import { history } from "../../App";
 import { useTranslation } from 'react-i18next';
+import StarRating from "../../component/StarRating";
+
 
 
 type Props = {};
@@ -47,13 +49,16 @@ const Detail = (props: Props) => {
     const params = useParams()
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
+  const [rating, setRating] = useState<number>(1);
   const [customers, setCustomers] = useState<CustommerType>({
     adult: 1,
     children: 1,
     baby: 1,
   });
+  const commentInput = useRef<string>('')
   const { t } = useTranslation()
   const user = getStoreJson(USER_LOGIN)
+
   const startDateFormat = format(startDate, "dd/MM/yyyy");
   const endDateFormat = format(endDate, "dd/MM/yyyy");
 
@@ -162,6 +167,26 @@ const Detail = (props: Props) => {
       dispatch(changeComponent(<LoginModal/>))
       dispatch(setIsOpen(true))
      }
+  }
+
+
+  
+
+
+  const handleComment = () => {
+    const data:CommentModal = {
+      
+      maPhong: Number(param.id),
+      maNguoiBinhLuan: user.id,
+      ngayBinhLuan: new Date().toDateString(),
+      noiDung: commentInput.current,
+      saoBinhLuan:rating + 1 
+    }
+
+
+    dispatch(postCommentApi(data))
+    const action = getCommentApi(Number(param.id));
+    dispatch(action);
   }
 
   return (
@@ -476,6 +501,12 @@ const Detail = (props: Props) => {
             <p className="content">{comment.noiDung}</p>
           </div>
         ))}
+      </div>
+
+      <div className="post-comment">
+      <StarRating getStar={setRating}/>
+        <textarea placeholder="Viết bình luận ..." onChange={(e) => commentInput.current = e.target.value}></textarea>
+        <button className="btn-comment" onClick={handleComment}>Bình luận</button>
       </div>
     </div>
 

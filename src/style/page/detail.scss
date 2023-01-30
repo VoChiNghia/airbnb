@@ -33,6 +33,7 @@
         &-img{
             width: 100%;
             overflow: hidden;
+            position: relative;
             img{
                 
                 object-fit: cover;
@@ -397,6 +398,57 @@
                 font-size: 18px;
                 padding: 10px 0;
                }
+            }
+        }
+        .post-comment{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            @include Responsive(MD){
+                width: 400px;
+            }
+            .star-rating{
+                text-align: right;
+                margin: 10px 0;
+
+                .star{
+                    margin:0 5px;
+                    &-icon{
+                        font-size: 18px;
+                    }
+                }
+                button {
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                  }
+                  .on {
+                    color: rgb(187, 187, 26);
+                  }
+                  .off {
+                    color: #ccc;
+                  }
+
+                 
+            }
+            
+            textarea{
+                border: 1px solid $border;
+                padding:10px 20px;
+                box-shadow: $box-shadow;
+            }
+            .btn-comment{
+                width: 100px;
+                padding:10px 20px;
+               margin: 20px 0;
+               box-shadow: $box-shadow;
+               &:active{
+                @include Active-button;
+               }
+             &:hover{
+                background: $hoverColor;
+             }
             }
         }
     }
