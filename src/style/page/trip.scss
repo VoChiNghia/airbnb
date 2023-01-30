@@ -4,6 +4,9 @@
     @include Responsive(SM){
         margin-top: 40px;
     }
+    @include Responsive(SM){
+        margin-top: 80px;
+    }
   
     &__container{
         width: 100%;

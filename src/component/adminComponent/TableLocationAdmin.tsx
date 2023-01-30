@@ -63,9 +63,9 @@ const TableLocationAdmin = () => {
         const name:string = removeVietnameseTones(item.tenViTri.toLocaleLowerCase())
         const province = removeVietnameseTones(item.tinhThanh).toLowerCase()
         const country = removeVietnameseTones(item.quocGia).toLowerCase()
-       
+      
         return name === inputSearchLowercase 
-        || item.id.toString() == inputSearchLowercase 
+        ||item.id === Number(inputSearchLowercase) 
         || name === inputSearchLowercase || province === inputSearchLowercase || country === inputSearchLowercase
       })
       setLocationFilterSearch(locationFilterSearch)

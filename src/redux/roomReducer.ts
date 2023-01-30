@@ -77,9 +77,22 @@ export const bookRoomApi = (data:BookRoom) => {
         
         try {
             const response:AxiosResponse = await http.post('/api/dat-phong',data)
-            alert(response.data.message)
+          
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: response.data.message,
+                showConfirmButton: false,
+                timer: 1500
+              })
         } catch (error) {
-            console.log(error)
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Đặt phòng thất bại',
+                showConfirmButton: false,
+                timer: 1500
+              })
         }
        
     }
