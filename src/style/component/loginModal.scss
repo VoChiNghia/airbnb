@@ -28,11 +28,13 @@
     
     .modal {
         z-index: 1000;
-        background: white;
+        
         position: relative;
         margin: 0 auto;
         border-radius: 3px;
        width: 100%;
+       
+          
         @include Responsive(MD){
             width: 500px;
         }
@@ -135,6 +137,8 @@
                 }
             }
           }
+
+       
       }
   }
   

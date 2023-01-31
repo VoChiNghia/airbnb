@@ -85,6 +85,8 @@ const Footer = (props: Props) => {
                 </NavLink>  
             </div>
         </div>
+
+      
     </div>
   )
 }

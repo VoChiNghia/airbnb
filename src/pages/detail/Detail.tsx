@@ -37,6 +37,8 @@ import { history } from "../../App";
 import { useTranslation } from 'react-i18next';
 import StarRating from "../../component/StarRating";
 import Swal from "sweetalert2";
+import { FacebookShareButton,FacebookIcon } from "react-share";
+
 
 
 
@@ -67,6 +69,8 @@ const Detail = (props: Props) => {
   const param = useParams();
   const submenuRef = useRef(null);
   const datePickerRef = useRef(null);
+
+
 
 
   const getRoomByIdFromApi = async () => {
@@ -219,7 +223,14 @@ const Detail = (props: Props) => {
         <div>Tambon Thep Krasatti, Chang Wat Phuket, Thái Lan</div>
         <div>
           <p>
-            <FiShare /> {t('content.share')}
+           
+            <FacebookShareButton
+              url={'https://thunderous-speculoos-c4bfd0.netlify.app/'}
+              quote="example"
+              hashtag="#Airbnb"
+            >
+                <FiShare /> {t('content.share')}
+            </FacebookShareButton>
           </p>
           <p>
             {" "}

@@ -5,10 +5,16 @@
   .ReactModal__Content{
     width: 100%;
     height: 100%;
+    border-radius: 10px !important;
+
+    background: transparent;
     @include Responsive(MD){
       width:auto;
       height: auto;
     }
+  
+    
+
   }
     .modal-close{
        display: flex;
@@ -44,4 +50,13 @@
     }
     
   }
+
   
+@keyframes modalFadeIn {
+  0% {
+    background-color:transparent;
+  }
+  100% {
+    background-color:white;
+  }
+}
