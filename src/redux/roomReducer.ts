@@ -112,13 +112,7 @@ export const postCommentApi = (data: CommentModal) => {
        try {
         const res:AxiosResponse = await http.post('/api/binh-luan',data)
         if(res.data.statusCode === 201){
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'thành công',
-              showConfirmButton: false,
-              timer: 1500
-            })
+            
            }
        } catch (error:any) {
         Swal.fire({

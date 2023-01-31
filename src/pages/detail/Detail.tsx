@@ -36,6 +36,7 @@ import AllFeature from "../../component/AllFeature";
 import { history } from "../../App";
 import { useTranslation } from 'react-i18next';
 import StarRating from "../../component/StarRating";
+import Swal from "sweetalert2";
 
 
 
@@ -67,26 +68,30 @@ const Detail = (props: Props) => {
   const submenuRef = useRef(null);
   const datePickerRef = useRef(null);
 
-  //lấy thông tin phòng qua id
-  const getRoomByIdFromApi = () => {
+
+  const getRoomByIdFromApi = async () => {
     const action = getRoomByIdApi(Number(param.id));
-    dispatch(action);
+    await dispatch(action);
+    await dispatch(loadingReducer(false))
   };
-  //lấy thông tin comment theo id
-  const delayLoading: NodeJS.Timeout = setTimeout(() =>{
-    dispatch(loadingReducer(false))
-  },1000)
-  const getCommentById = () => {
+  
+  
+
+  const getCommentById = async () => {
     const action = getCommentApi(Number(param.id));
-     dispatch(action);
+     await dispatch(action);
+     await dispatch(loadingReducer(false))
   
   };
   useEffect(() => {
+    
     getRoomByIdFromApi();
     getCommentById();
+    
+ 
   
     window.scrollTo(0, 0);
-    return clearTimeout(delayLoading)
+   
   }, []);
   
 
@@ -174,19 +179,33 @@ const Detail = (props: Props) => {
 
 
   const handleComment = () => {
-    const data:CommentModal = {
+    console.log(user)
+    if(user){
+      const data:CommentModal = {
       
-      maPhong: Number(param.id),
-      maNguoiBinhLuan: user.id,
-      ngayBinhLuan: new Date().toDateString(),
-      noiDung: commentInput.current,
-      saoBinhLuan:rating + 1 
-    }
+        maPhong: Number(param.id),
+        maNguoiBinhLuan: user.id,
+        ngayBinhLuan: new Date().toDateString(),
+        noiDung: commentInput.current,
+        saoBinhLuan:rating + 1
+      }
+      dispatch(postCommentApi(data))
 
 
-    dispatch(postCommentApi(data))
-    const action = getCommentApi(Number(param.id));
+      const action = getCommentApi(Number(param.id));
     dispatch(action);
+    dispatch(loadingReducer(false))
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Bạn chưa đăng nhập',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    
+    
   }
 
   return (
