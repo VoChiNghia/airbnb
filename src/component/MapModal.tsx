@@ -48,7 +48,7 @@ const MapModal = (props: Props) => {
   
       
     }}
-    mapStyle="mapbox://styles/vochinghia/cldenwz1t000101n1p253iqqn"
+    mapStyle="mapbox://styles/vochinghia/cldk7hbd9000001nvkvi9dhrp"
     mapboxAccessToken='pk.eyJ1Ijoidm9jaGluZ2hpYSIsImEiOiJjbGNwczZuMzMxdGIxM25yeTIyMjh1ZXFiIn0.BBrTFz4H4l5Ar49w4yR-cw'
    
   >
