@@ -11,8 +11,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination,Navigation } from "swiper";
-import { getStoreJson, saveStoreJson } from "../util/config";
+import { USER_LOGIN, getStoreJson, saveStoreJson } from "../util/config";
 import { SaveDataModal } from "../types/save";
+import { changeComponent, setIsOpen } from "../redux/modalReducer";
+import { DispatchType } from "../store/store";
+import { useDispatch } from "react-redux";
+import Save from "./Save";
+import { UserModal } from "./adminComponent/ModalAddUser";
+import Swal from "sweetalert2";
 
 type Props = {
   data:Room
@@ -24,13 +30,14 @@ interface Element {
 
 const Cart = ({data}: Props) => {
 
+
   const [activeHeart,setActiveHeart] = useState<boolean>(false)
   let ranNum = Math.random()*5;
   if(ranNum <= 3){
     ranNum += 2
   }
-
-
+  const user:UserModal = getStoreJson(USER_LOGIN)
+  const dispatch:DispatchType = useDispatch()
   const date = getRandomDate()
   const day = date.getDate() <= 0 ? 1 : date.getDate()
   const month = date.getMonth() <= 0 ? 2 : date.getMonth()
@@ -40,21 +47,27 @@ const prev:any = useRef(null)
 const next:any = useRef(null)
   let count = 1
   const handleClick = () => {
-    setActiveHeart(!activeHeart)
-    const saveData:SaveDataModal =  {
-      textInput:'like from home',
-      maPhong:Number(data.id),
-      image:data.hinhAnh
-  }
 
+   if(user){
+    dispatch(changeComponent(<Save maPhong={data.id} img={data.hinhAnh}/>))
+    dispatch(setIsOpen(true))
 
 const getSaveData:SaveDataModal[] = getStoreJson('saveData') ? getStoreJson('saveData') : []
 
 getSaveData.forEach((saveData:SaveDataModal) =>{
   saveData.maPhong === data.id ?  setActiveHeart(true) : setActiveHeart(false)
 })
-getSaveData.push(saveData)
-saveStoreJson('saveData',getSaveData)
+   }else{
+    Swal.fire({
+      position: 'center',
+      icon: 'error',
+      title: 'Bạn chưa đăng nhập',
+      showConfirmButton: false,
+      timer: 1500
+    })
+   }
+
+
   }
  
   useEffect(() =>{
@@ -102,10 +115,22 @@ saveStoreJson('saveData',getSaveData)
        </NavLink>
        <div className="heart" onClick={handleClick}>
         {
-          activeHeart ? <AiFillHeart className="heart-icon-fill"/> :  <AiOutlineHeart className="heart-icon-outline"/>
+          activeHeart ? <AiFillHeart className="heart-icon-fill"/> 
+          : <svg
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          role="presentation"
+          focusable="false"
+         className="heart-icon-outline"
+        >
+          <path
+            d="m16 28c7-4.733 14-10 14-17 0-1.792-.683-3.583-2.05-4.95-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05l-2.051 2.051-2.05-2.051c-1.367-1.366-3.158-2.05-4.95-2.05-1.791 0-3.583.684-4.949 2.05-1.367 1.367-2.051 3.158-2.051 4.95 0 7 7 12.267 14 17z"
+          ></path>
+        </svg>
         }
           
-         
+          
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 .lazyload-wrapper{
     width: 320px;
     margin:0 auto;
-   
+  
     @include Responsive(XL){
         width: 260px;
     }
@@ -132,14 +132,23 @@
         top: 10px;
         right:10px;
         z-index: 2;
-        .heart-icon-outline{
-            font-size: 25px;
-            color: white;
-        }
+       
         .heart-icon-fill{
             font-size: 25px;
             color: red;
         }
+        .heart-icon-outline{
+  
+          display: block;
+          fill: rgba(0, 0, 0, 0.5);
+          height: 24px;
+          width: 24px;
+          stroke: var(--f-mkcy-f);
+          stroke-width: 2;
+          overflow: visible;
+          stroke:white;
+        
+      }
        }
        .prev,.next{
         position: absolute;
@@ -174,3 +183,4 @@
        }
     }
 }
+

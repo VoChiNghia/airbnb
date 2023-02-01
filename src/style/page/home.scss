@@ -14,9 +14,7 @@
         @include Responsive(XS){
             grid-template-columns: 1fr 1fr;
         }
-        @include Responsive(SM){
-            grid-template-columns: 1fr 1fr; 
-        }
+      
         @include Responsive(MD){
             grid-template-columns: 1fr 1fr 1fr;  
         }

@@ -1,6 +1,6 @@
 .header{
     display:none;
-    @include Responsive(MD){
+    @include Responsive(SM){
      display: block;
     }
   &.fixed{
