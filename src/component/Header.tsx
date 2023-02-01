@@ -461,7 +461,7 @@ const Header = (props: Props) => {
                 <ul>
                   <li>{t('content.message')}</li>
                   <NavLink to={`/trip/${user.id}`}> <li className="active">{t('content.trip')}</li></NavLink>
-                  <li>{t('content.favorites')}</li>
+                  <NavLink to='/favorite'><li className="active">{t('content.favorites')}</li></NavLink>
                   <hr />
                   <li>{t('content.airbnbyourhome')}</li>
                   <li>{t('content.hostanexperience')}</li>

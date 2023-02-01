@@ -1,0 +1,35 @@
+.save__favorite{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    h1{
+        text-align: center;
+        margin: 20px 0;
+        font-size: 18px;
+    }
+
+    input{
+        border: 1px solid $border;
+        padding: 15px;
+        margin-top: 20px;
+
+        border-radius:10px;
+        
+    }
+    p{
+        color:$textSub;
+        font-size: 12px;
+        margin: 10px 0;
+    }
+    button{
+        background-color: gray;
+        padding: 15px;
+        color: #fff;
+        border-radius: 10px;
+        cursor: not-allowed;
+        &.active{
+            background-color:black;
+            cursor: pointer;
+        }
+    }
+}

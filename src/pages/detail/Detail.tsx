@@ -38,6 +38,7 @@ import { useTranslation } from 'react-i18next';
 import StarRating from "../../component/StarRating";
 import Swal from "sweetalert2";
 import { FacebookShareButton,FacebookIcon } from "react-share";
+import Save from "../../component/Save";
 
 
 
@@ -212,6 +213,11 @@ const Detail = (props: Props) => {
     
   }
 
+  const handleSave = () =>{
+    dispatch(changeComponent(<Save maPhong={Number(param.id)} img={roomById?.hinhAnh}/>))
+    dispatch(setIsOpen(true))
+  }
+
   return (
   <>
   {
@@ -232,8 +238,8 @@ const Detail = (props: Props) => {
                 <FiShare /> {t('content.share')}
             </FacebookShareButton>
           </p>
-          <p>
-            {" "}
+          <p onClick={handleSave}>
+            
             <BiHeart /> {t('content.save')}
           </p>
         </div>

@@ -11,6 +11,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination,Navigation } from "swiper";
+import { getStoreJson, saveStoreJson } from "../util/config";
+import { SaveDataModal } from "../types/save";
 
 type Props = {
   data:Room
@@ -39,9 +41,29 @@ const next:any = useRef(null)
   let count = 1
   const handleClick = () => {
     setActiveHeart(!activeHeart)
+    const saveData:SaveDataModal =  {
+      textInput:'like from home',
+      maPhong:Number(data.id),
+      image:data.hinhAnh
+  }
+
+
+const getSaveData:SaveDataModal[] = getStoreJson('saveData') ? getStoreJson('saveData') : []
+
+getSaveData.forEach((saveData:SaveDataModal) =>{
+  saveData.maPhong === data.id ?  setActiveHeart(true) : setActiveHeart(false)
+})
+getSaveData.push(saveData)
+saveStoreJson('saveData',getSaveData)
   }
  
+  useEffect(() =>{
+    const save = getStoreJson('saveData') ? getStoreJson('saveData') : []
 
+    save.forEach((saveData:SaveDataModal) =>{
+        saveData.maPhong === data.id ?  setActiveHeart(true) : setActiveHeart(false)
+    })
+  },[])
    
 
   

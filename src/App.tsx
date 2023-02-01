@@ -33,6 +33,7 @@ import i18n from "./language/i18n";
 import ModalHoc from "./HOC/ModalHoc";
 
 import Trip from "./pages/trip/Trip";
+import Favorite from "./pages/favorite/Favorite";
 
 
 export const history = createBrowserHistory({ v5Compat: true });
@@ -66,6 +67,8 @@ const App = (props: Props) => {
                 <Route path="detail">
                   <Route path=":id" element={<Detail />} />
                 </Route>
+
+                <Route path="favorite" element={<Favorite />} />
               </Route>
 
               <Route path="/" element={<Usertemplate />}>
