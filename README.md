@@ -51,9 +51,7 @@ npm start
 
 ### Built With
 
-React
-typescript
-redux
+-HTML, CSS, ReactJS,Axios, Redux, Redux Thunk, Swiper,typescript, React-date-range, Lazyloading, react-share, map...
 
 ## Contact
 
