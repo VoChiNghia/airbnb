@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { uploadImageLocation } from '../../redux/location'
+import { getLocationApi, uploadImageLocation } from '../../redux/location'
 import { useDispatch } from 'react-redux'
 import { DispatchType } from '../../store/store'
 
@@ -21,6 +21,7 @@ const AddImageAdmin = ({idUpdate}: Props) => {
         formData.append('formFile',selected)
         dispatch(uploadImageLocation(idUpdate,formData))
         }
+        dispatch(getLocationApi());
     }
 
     console.log(selected)

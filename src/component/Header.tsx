@@ -27,6 +27,8 @@ import { getRoomByLocationApi } from "../redux/roomReducer";
 import { getBookRoomByUserApi } from "../redux/bookRoomReducer";
 import { useTranslation } from 'react-i18next';
 import Language from "./Language";
+import {User} from '../types/authType'
+import { Logout } from "../redux/auth";
 const Logo = require("../assest/image/Airbnb_Logo.jpg")
 type Props = {};
 
@@ -40,7 +42,7 @@ const Header = (props: Props) => {
     children: 1,
     baby: 1,
   });
-
+  
   const [locationInput,setLocationInput] = useState<string>('')
   const [locationId,setLocationId] = useState<number>(1)
   const {address} = useSelector((state:RootState) => state.locationReducer)
@@ -52,7 +54,7 @@ const Header = (props: Props) => {
     endDate: endDate,
     key: "selection",
   };
-
+  const { signIn,logoutState } = useSelector((state:RootState)=> state.authReducer)
   const startDateFormat = format(startDate, "dd/MM/yyyy");
   const endDateFormat = format(endDate, "dd/MM/yyyy");
   const itemCenterRef = useRef(null);
@@ -60,8 +62,9 @@ const Header = (props: Props) => {
   const wrapperRef = useRef(null);
   const submenuRef = useRef(null);
   const checkoutRef = useRef(null);
-  const user = getStoreJson(USER_LOGIN);
+  const userFromLocal:User = getStoreJson(USER_LOGIN);
 
+  const user:User = signIn?.user ? signIn.user : userFromLocal
 
   useEffect(()=>{
     const getAllLocation = () =>{
@@ -70,7 +73,10 @@ const Header = (props: Props) => {
   }
     getAllLocation()
   },[])
- 
+  console.log(logoutState)
+  console.log('re-render', user)
+  console.log('signIn', signIn)
+  console.log('local',userFromLocal)
   const arrFilter = address?.filter((location) => {
     const vt = removeVietnameseTones(location.tenViTri.toLocaleLowerCase())
     const province = removeVietnameseTones(location.tinhThanh.toLocaleLowerCase())
@@ -189,11 +195,14 @@ const Header = (props: Props) => {
       setLocationInput(address)
   }
 
-  const logout = () => {
-    removeStore(USER_LOGIN);
-    removeStore(ACCESS_TOKEN);
+  const logout = async () => {
+  await  removeStore(USER_LOGIN);
+  await removeStore(ACCESS_TOKEN);
+    
     history.push('/')
-    window.location.reload();
+    dispatch(Logout())
+   
+   
   };
 
   return (

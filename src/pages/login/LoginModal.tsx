@@ -36,9 +36,9 @@ const LoginModal = () => {
   const [hidePass,setHidePass] = useState<boolean>(false)
   const modalRef = useRef(null)
  
-
-  const user:User = getStoreJson(USER_LOGIN)
-
+  const {signIn} = useSelector((state:RootState) => state.authReducer)
+  const userFromLocal:User = getStoreJson(USER_LOGIN)
+  const user:User = signIn?.user ? signIn?.user : userFromLocal
     useEffect(() => {
       if(user){
         if(user?.role === 'ADMIN') {

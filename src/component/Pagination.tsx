@@ -19,12 +19,13 @@ const Pagination = ({
   for (let i = 1; i <= Math.ceil(totalPages / postPerPage); i++) {
     pages.push(i);
   }
+
   return (
     <div className="pagination">
       <ul className="pagination-list">
         <button
           className="btn-move-left"
-          disabled={currentPage === pages[0] ? true : false}
+          disabled={currentPage === pages[1] ? true : false}
           onClick={() => setCurrentPage(currentPage - 1)}
         >
           <MdChevronLeft />

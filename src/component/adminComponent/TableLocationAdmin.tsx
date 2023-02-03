@@ -25,7 +25,7 @@ const TableLocationAdmin = () => {
     const [postPerPage, setpostPerPage] = useState<number>(10);
 
     const inputSearch = useRef<string>('')
-    const [locationFilterSearch,setLocationFilterSearch] = useState<LocationDetail[]>(location)
+    const [locationFilterSearch,setLocationFilterSearch] = useState<LocationDetail[]>([])
     const [loadingTable,setLoadingtable] = useState<boolean>(false)
 
 
@@ -49,6 +49,7 @@ const TableLocationAdmin = () => {
     const handleUpdate = (item:any) => {
       dispatch(changeComponent(<ModalAddLocation type='editLocation' item={item} />));
       dispatch(setIsOpen(true));
+    
     }
 
     const handleUpdateImage = (id:number) => {
@@ -128,7 +129,7 @@ const TableLocationAdmin = () => {
       </table>
       <div className="pagination">
             <Pagination
-              totalPages={Number(locationFilterSearch.length)}
+              totalPages={Number((inputSearch.current.length === 0 ? location : locationFilterSearch).length)}
               postPerPage={postPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

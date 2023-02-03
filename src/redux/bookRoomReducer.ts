@@ -79,7 +79,7 @@ export const getBookRoomApi = () => {
 
 
  export const deleteBookRoom = (id:number) => {
-    return async () => {
+    return async (dispatch: DispatchType) => {
         try {
          const res:AxiosResponse = await http.delete(`/api/dat-phong/${id}`)
         
@@ -90,6 +90,7 @@ export const getBookRoomApi = () => {
             showConfirmButton: true,
             timer: 1500
           })
+          dispatch(getBookRoomApi());
         
         } catch (error:any) {
          

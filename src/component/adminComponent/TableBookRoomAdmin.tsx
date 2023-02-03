@@ -25,7 +25,7 @@ const TableBookRoomAdmin = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [postPerPage, setpostPerPage] = useState<number>(20);
     const inputSearch = useRef<string>('')
-    const [bookRoomFilterSearch,setBookRoomFilterSearch] = useState<BookRoom[]>(getAllBookRoom)
+    const [bookRoomFilterSearch,setBookRoomFilterSearch] = useState<BookRoom[]>([])
     const [loadingTable,setLoadingtable] = useState<boolean>(false)
   
     const lastPostIndex = currentPage * postPerPage;
@@ -122,7 +122,7 @@ const TableBookRoomAdmin = () => {
       </table>
       <div className="pagination">
             <Pagination
-              totalPages={Number(getAllBookRoom.length)}
+              totalPages={Number((inputSearch.current.length === 0 ? getAllBookRoom : bookRoomFilterSearch).length)}
               postPerPage={postPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

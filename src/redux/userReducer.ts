@@ -74,6 +74,7 @@ export const getAllUsedApi = () => {
          const res:AxiosResponse = await http.get('/api/users')
         
          dispatch(allUserReducer(res.data.content))
+         console.log('called')
         } catch (error:any) {
          alert(error?.response.data.content)
         }
@@ -100,7 +101,8 @@ export const deleteUser = (id:number) => {
                 res.data.message,
                 'success'
               )
-              dispatch(getAllUsedApi( ))
+              dispatch(getAllUsedApi())
+           
             }
           })
         } catch (error:any) {

@@ -22,10 +22,10 @@ const TableUserAdmin = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [postPerPage, setpostPerPage] = useState<number>(10);
     const inputSearch = useRef<string>('')
-    const [userFilterSearch,setUserFilterSearch] = useState<User[]>(user)
+    const [userFilterSearch,setUserFilterSearch] = useState<User[]>([])
     const [loadingTable,setLoadingtable] = useState<boolean>(false)
   
-
+    console.log(userFilterSearch)
     const lastPostIndex = currentPage * postPerPage;
     const firstPostIndex = lastPostIndex - postPerPage;
    
@@ -43,7 +43,8 @@ const TableUserAdmin = () => {
   
     const handleDelete = (id: number) => {
       dispatch(deleteUser(id));
-      dispatch(getAllUsedApi());
+     
+    
     };
 
     const handleSearch = () => {
@@ -55,7 +56,7 @@ const TableUserAdmin = () => {
 
         //console.log(format(new Date(item.birthday), 'dd/MM/yyyy').toString().includes(inputSearchLowercase))
        
-        return name === inputSearchLowercase || item.email.includes(inputSearchLowercase)
+        return name === inputSearchLowercase || item.email == inputSearchLowercase
         || item.id.toString() == inputSearchLowercase
         || gender === inputSearchLowercase
         
@@ -139,7 +140,7 @@ const TableUserAdmin = () => {
       </table>
       <div className="pagination">
             <Pagination
-              totalPages={Number(user.length)}
+              totalPages={Number((inputSearch.current.length === 0 ? user : userFilterSearch).length)}
               postPerPage={postPerPage}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}

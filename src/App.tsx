@@ -20,11 +20,7 @@ import LoginModal from "./pages/login/LoginModal";
 import Search from "./pages/search/Search";
 import User from "./pages/user/User";
 import { USER_LOGIN, getStore, getStoreJson, saveStore } from "./util/config";
-import {
-  User as UserDetail,
-  UserLogin,
-  User as UserType,
-} from "./types/authType";
+import { User as UserAs} from './types/authType'
 import Admin from "./pages/admin/Admin";
 import AdminTemPlate from "./template/AdminTemPlate";
 
@@ -34,6 +30,8 @@ import ModalHoc from "./HOC/ModalHoc";
 
 import Trip from "./pages/trip/Trip";
 import Favorite from "./pages/favorite/Favorite";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 
 
 export const history = createBrowserHistory({ v5Compat: true });
@@ -41,7 +39,9 @@ export const history = createBrowserHistory({ v5Compat: true });
 type Props = {};
 
 const App = (props: Props) => {
-  const user: UserDetail = getStoreJson(USER_LOGIN);
+    const {signIn} = useSelector((state:RootState) => state.authReducer)
+  const userFromLocal:UserAs = getStoreJson(USER_LOGIN)
+  const user:UserAs = signIn?.user ? signIn?.user : userFromLocal
  
   
   useEffect(() => {

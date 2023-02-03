@@ -53,11 +53,11 @@ const User = (props: Props) => {
 
   const {userDetails} = useSelector((state:RootState) => state.userReducer)
 
-  useEffect(() =>{
-      const getUser = () => {
-          dispatch(getUserByIdApi(Number(params.id)))
-      }
+  const getUser = () => {
+    dispatch(getUserByIdApi(Number(params.id)))
+}
 
+  useEffect(() =>{
       getUser()
   },[])
 
@@ -94,7 +94,7 @@ const User = (props: Props) => {
 
 
 
-  const handleSubmit = (values: UpdateProfile) => {
+  const handleSubmit = async (values: UpdateProfile) => {
 
     let action: UpdateProfile = values;
                 if (typeof values.gender == "string") {
@@ -104,7 +104,8 @@ const User = (props: Props) => {
                     action = { ...values, gender: true, birthday: dateFormat };
                   }
                 }
-                dispatch(updateUser(userDetails.id, action));
+              await  dispatch(updateUser(userDetails.id, action));
+                getUser()
               
 
   };

@@ -183,7 +183,7 @@ const Detail = (props: Props) => {
   
 
 
-  const handleComment = () => {
+  const handleComment = async () => {
     console.log(user)
     if(user){
       const data:CommentModal = {
@@ -194,11 +194,10 @@ const Detail = (props: Props) => {
         noiDung: commentInput.current,
         saoBinhLuan:rating + 1
       }
-      dispatch(postCommentApi(data))
+     await dispatch(postCommentApi(data))
 
 
-      const action = getCommentApi(Number(param.id));
-    dispatch(action);
+      getCommentById();
     dispatch(loadingReducer(false))
     }else{
       Swal.fire({
