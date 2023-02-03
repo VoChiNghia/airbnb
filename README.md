@@ -37,7 +37,7 @@ A step by step guide to install and run the project:
 
 1. Clone the repository to your local machine
 
-git clone https://github.com/YOUR_USERNAME/airbnb-clone.git
+git clone https://github.com/VoChiNghia/airbnb.git
 
 2. Install the dependencies
 
