@@ -34,8 +34,10 @@ const HeaderMobileBottom = (props: Props) => {
   <div className="header__mobile__bottom">
     <div className="header__mobile__bottom__container">
           <div className='active'>
+              <NavLink to="/">
               <IoIosSearch className='icon'/>
               <p>Khám phá</p>
+              </NavLink>
           </div>
           <div>
           {user ?
@@ -43,10 +45,10 @@ const HeaderMobileBottom = (props: Props) => {
                 <IoIosLogOut onClick={logout} className='icon'/>
               <p>Đăng xuất</p>
               </> :
-              <>
+              <NavLink to='/favorite'>
               <AiOutlineHeart className='icon'/>
               <p>Yêu thích</p>
-              </>
+              </NavLink>
               }
               
           </div>
