@@ -161,7 +161,7 @@ export const uploadImageLocation = (id:number,data:any) => {
          Swal.fire({
             position: 'center',
             icon: 'success',
-            title: res.data.message,
+            title: 'thành công',
             showConfirmButton: false,
             timer: 1500
           })
