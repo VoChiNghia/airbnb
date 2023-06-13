@@ -1,51 +1,47 @@
-
-*{ 
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-   }
-   ol, ul , li {
-    list-style: none;
-    text-decoration: none;
-    
-  }
-  a{
-    text-decoration: none;
-    color: $text;
-  }
-
-  :focus {
-    outline: 0;
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
 }
-blockquote, q {
-    quotes: none;
+ol,
+ul,
+li {
+  list-style: none;
+  text-decoration: none;
 }
-.container{
-    max-width: $XL;
-    margin: 0 auto;
+a {
+  text-decoration: none;
+  color: $text;
+}
+
+:focus {
+  outline: 0;
+}
+blockquote,
+q {
+  quotes: none;
+}
+.container {
+  max-width: $XL;
+  margin: 0 auto;
 }
 .line {
   background-color: rgb(231, 231, 231);
   width: 1px;
 }
 
-li:hover{
+li:hover {
   text-decoration: underline;
 }
-hr{
+hr {
   width: 100%;
-  height:1px;
+  height: 1px;
   background-color: $border;
-  
 }
-p{
+p {
   font-size: 14px;
- 
 }
-
-
-

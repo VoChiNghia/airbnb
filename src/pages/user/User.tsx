@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {
   getUserByIdApi,
   updateAvataApi,
   updateUser,
 } from "../../redux/userReducer";
 import { DispatchType, RootState } from "../../store/store";
-import { USER_LOGIN, getStoreJson } from "../../util/config";
 import { AiFillStar } from "react-icons/ai";
 import { TiTick } from "react-icons/ti";
 import useModal from "../../hook/useModal";
@@ -18,8 +17,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import Swal from "sweetalert2";
-import { setIsOpen } from "../../redux/modalReducer";
-type Props = {};
 interface UpdateProfile {
   name: string;
   phone: string;
@@ -37,53 +34,41 @@ const initialValues: UpdateProfile = {
   address: "",
 };
 
-const User = (props: Props) => {
-
-  const [selected,setSelected] = useState()
+const User = () => {
+  const [selected, setSelected] = useState();
   const { isShowing, toggle } = useModal();
   const dispatch: DispatchType = useDispatch();
   const [date, setDate] = useState<Date>(new Date());
   const dateFormat = format(date, "dd-MM-yyyy");
   const formRef = useRef(null);
-  const params = useParams()
+  const params = useParams();
 
- 
-
-
-
-  const {userDetails} = useSelector((state:RootState) => state.userReducer)
+  const { userDetails } = useSelector((state: RootState) => state.userReducer);
 
   const getUser = () => {
-    dispatch(getUserByIdApi(Number(params.id)))
-}
+    dispatch(getUserByIdApi(Number(params.id)));
+  };
 
-  useEffect(() =>{
-      getUser()
-  },[])
-
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleClickSubmitAvatar = async () => {
-    if(selected){
+    if (selected) {
       const formData = new FormData();
       formData.append("formFile", selected);
-     
-    await dispatch(updateAvataApi(formData));
-    await dispatch(getUserByIdApi(Number(params.id)))
-   
-    
 
-    }else{
+      await dispatch(updateAvataApi(formData));
+      await dispatch(getUserByIdApi(Number(params.id)));
+    } else {
       Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'vui lòng chọn ảnh',
+        position: "center",
+        icon: "warning",
+        title: "vui lòng chọn ảnh",
         showConfirmButton: false,
-        timer: 1500
-      })
+        timer: 1500,
+      });
     }
-
-   
-   
   };
 
   const updateProfile = () => {
@@ -92,25 +77,18 @@ const User = (props: Props) => {
     }
   };
 
-
-
   const handleSubmit = async (values: UpdateProfile) => {
-
     let action: UpdateProfile = values;
-                if (typeof values.gender == "string") {
-                  if (values.gender === "0") {
-                    action = { ...values, gender: false, birthday: dateFormat };
-                  } else {
-                    action = { ...values, gender: true, birthday: dateFormat };
-                  }
-                }
-              await  dispatch(updateUser(userDetails.id, action));
-                getUser()
-              
-
+    if (typeof values.gender == "string") {
+      if (values.gender === "0") {
+        action = { ...values, gender: false, birthday: dateFormat };
+      } else {
+        action = { ...values, gender: true, birthday: dateFormat };
+      }
+    }
+    await dispatch(updateUser(userDetails.id, action));
+    getUser();
   };
-
-
 
   return (
     <div className="user container">
@@ -159,9 +137,7 @@ const User = (props: Props) => {
                 birthday: yup.string().required(),
                 name: yup.string().required(),
               })}
-              onSubmit={(values: UpdateProfile) => {
-                
-              }}
+              onSubmit={(values: UpdateProfile) => {}}
             >
               {({ values, errors, touched }) => (
                 <Form ref={formRef} className="form">
@@ -203,8 +179,6 @@ const User = (props: Props) => {
                     />
                   </div>
 
-                  
-
                   <div className="form-group">
                     <p>Gender</p>
                     <div className="gender">
@@ -236,7 +210,12 @@ const User = (props: Props) => {
           </div>
         </div>
       </div>
-      <UpdateAvatar isShowing={isShowing} hide={toggle} setSelected={setSelected} submit={handleClickSubmitAvatar} />
+      <UpdateAvatar
+        isShowing={isShowing}
+        hide={toggle}
+        setSelected={setSelected}
+        submit={handleClickSubmitAvatar}
+      />
     </div>
   );
 };

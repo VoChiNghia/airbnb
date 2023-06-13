@@ -1,60 +1,54 @@
-.search{
-    margin-top: 180px;
-    &__container{
-        
-        display: flex;
-        flex-direction: column;
-        @include Responsive(MD){
-            flex-direction: row;
+.search {
+  margin-top: 180px;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    @include Responsive(MD) {
+      flex-direction: row;
+    }
+
+    &__left {
+      flex: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+
+      gap: 10px;
+      margin-right: 10px;
+
+      @include Responsive(XS) {
+        grid-template-columns: 1fr 1fr;
+      }
+      @include Responsive(MD) {
+        grid-template-columns: 1fr 1fr 1fr;
+        // .lazyload-wrapper{
+        //     width:220px;
+        //     height: 220;
+        //     .card-img{
+        //         height: 220px;
+        //     }
+        // }
+      }
+      @include Responsive(XXL) {
+        .lazyload-wrapper {
+          width: 280px;
+          height: 220;
+          .card-img {
+            height: 280px;
+          }
         }
+      }
+    }
 
-        &__left{
-            flex: 2;
-            display: grid;
-            grid-template-columns: 1fr;
-            
-            gap: 10px;
-            margin-right: 10px;
+    &__right {
+      flex: 1;
+      height: 100vh;
+      position: sticky;
+      top: 0;
 
-            
-           
-           
-
-            @include Responsive(XS){
-                grid-template-columns: 1fr 1fr;
-            }
-            @include Responsive(MD){
-                grid-template-columns: 1fr 1fr 1fr;
-                // .lazyload-wrapper{
-                //     width:220px;
-                //     height: 220;
-                //     .card-img{
-                //         height: 220px;
-                //     }
-                // }
-                
-            }
-            @include Responsive(XXL){
-                 .lazyload-wrapper{
-                        width:280px;
-                        height: 220;
-                        .card-img{
-                            height: 280px;
-                        }
-                    }
-            }
-        }
-
-        &__right{
-            flex: 1;
-            height:100vh;
-           position:sticky;
-           top: 0;
-
-           display:none;
-    @include Responsive(MD){
+      display: none;
+      @include Responsive(MD) {
         display: block;
+      }
     }
-        }
-    }
+  }
 }

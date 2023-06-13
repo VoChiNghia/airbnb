@@ -1,17 +1,10 @@
-import React,{useEffect, useState} from "react";
+import React from "react";
 import MapModal from "../../component/MapModal";
 
-
-
-
-type Props = {};
-
-const Map2 = (props: Props) => {
- 
-
+const Map2 = () => {
   return (
-    <div className="map" style={{ height: '100vh', width: '100%' }}>
-      <MapModal/>
+    <div className="map" style={{ height: "100vh", width: "100%" }}>
+      <MapModal />
     </div>
   );
 };

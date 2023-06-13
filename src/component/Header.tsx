@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { BiSearch, BiMenu } from "react-icons/bi";
 import { RiGlobalLine } from "react-icons/ri";
 import { HiUserCircle, HiSearch } from "react-icons/hi";
-import {MdLocationPin} from "react-icons/md"
-import { useOnClickOutside } from 'usehooks-ts'
+import { MdLocationPin } from "react-icons/md";
+import { useOnClickOutside } from "usehooks-ts";
 import NavBar from "./NavBar";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   ACCESS_TOKEN,
   USER_LOGIN,
@@ -14,27 +14,24 @@ import {
 } from "../util/config";
 import { DateRangePicker } from "react-date-range";
 import { CustommerType, SelectionDate } from "../types/detailType";
-import { format, compareAsc } from "date-fns";
+import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../store/store";
-import { getLocationAddressApi, getLocationApi } from "../redux/location";
-import {removeVietnameseTones} from "../util/convertViet";
+import { getLocationAddressApi } from "../redux/location";
+import { removeVietnameseTones } from "../util/convertViet";
 import { history } from "../App";
 import RegisterModal from "../pages/register/RegisterModal";
 import { changeComponent, setIsOpen } from "../redux/modalReducer";
 import LoginModal from "../pages/login/LoginModal";
 import { getRoomByLocationApi } from "../redux/roomReducer";
-import { getBookRoomByUserApi } from "../redux/bookRoomReducer";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import Language from "./Language";
-import {User} from '../types/authType'
+import { User } from "../types/authType";
 import { Logout } from "../redux/auth";
-const Logo = require("../assest/image/Airbnb_Logo.jpg")
-type Props = {};
+const Logo = require("../assest/image/Airbnb_Logo.jpg");
 
-const Header = (props: Props) => {
-
-  const { t } = useTranslation()
+const Header = () => {
+  const { t } = useTranslation();
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [customers, setCustomers] = useState<CustommerType>({
@@ -42,19 +39,20 @@ const Header = (props: Props) => {
     children: 1,
     baby: 1,
   });
-  
-  const [locationInput,setLocationInput] = useState<string>('')
-  const [locationId,setLocationId] = useState<number>(1)
-  const {address} = useSelector((state:RootState) => state.locationReducer)
-  const dispatch:DispatchType = useDispatch()
 
+  const [locationInput, setLocationInput] = useState<string>("");
+  const [locationId, setLocationId] = useState<number>(1);
+  const { address } = useSelector((state: RootState) => state.locationReducer);
+  const dispatch: DispatchType = useDispatch();
 
   const selectionRange: SelectionDate = {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
   };
-  const { signIn,logoutState } = useSelector((state:RootState)=> state.authReducer)
+  const { signIn, logoutState } = useSelector(
+    (state: RootState) => state.authReducer
+  );
   const startDateFormat = format(startDate, "dd/MM/yyyy");
   const endDateFormat = format(endDate, "dd/MM/yyyy");
   const itemCenterRef = useRef(null);
@@ -62,84 +60,87 @@ const Header = (props: Props) => {
   const wrapperRef = useRef(null);
   const submenuRef = useRef(null);
   const checkoutRef = useRef(null);
-  const userFromLocal:User = getStoreJson(USER_LOGIN);
+  const userFromLocal: User = getStoreJson(USER_LOGIN);
 
-  const user:User = signIn?.user ? signIn.user : userFromLocal
+  const user: User = signIn?.user ? signIn.user : userFromLocal;
 
-  useEffect(()=>{
-    const getAllLocation = () =>{
-      const action = getLocationAddressApi()
-      dispatch(action)
-  }
-    getAllLocation()
-  },[])
-  console.log(logoutState)
-  console.log('re-render', user)
-  console.log('signIn', signIn)
-  console.log('local',userFromLocal)
+  useEffect(() => {
+    const getAllLocation = () => {
+      const action = getLocationAddressApi();
+      dispatch(action);
+    };
+    getAllLocation();
+  }, []);
+  console.log(logoutState);
+  console.log("re-render", user);
+  console.log("signIn", signIn);
+  console.log("local", userFromLocal);
   const arrFilter = address?.filter((location) => {
-    const vt = removeVietnameseTones(location.tenViTri.toLocaleLowerCase())
-    const province = removeVietnameseTones(location.tinhThanh.toLocaleLowerCase())
-   return  vt.includes(removeVietnameseTones(locationInput.toLocaleLowerCase())) ||
-   province.includes(removeVietnameseTones(locationInput.toLocaleLowerCase()))
-  })
-  
+    const vt = removeVietnameseTones(location.tenViTri.toLocaleLowerCase());
+    const province = removeVietnameseTones(
+      location.tinhThanh.toLocaleLowerCase()
+    );
+    return (
+      vt.includes(removeVietnameseTones(locationInput.toLocaleLowerCase())) ||
+      province.includes(
+        removeVietnameseTones(locationInput.toLocaleLowerCase())
+      )
+    );
+  });
 
   const handleClickOutside = () => {
     if (itemCenterRef.current) {
-        (itemCenterRef.current as HTMLElement).classList.remove("active");
-      }
+      (itemCenterRef.current as HTMLElement).classList.remove("active");
+    }
 
-      (document.querySelector(".submenu-user") as HTMLElement).classList.remove(
-        "active"
-      );
-    
-  }
+    (document.querySelector(".submenu-user") as HTMLElement).classList.remove(
+      "active"
+    );
+  };
 
-  useOnClickOutside(wrapperRef, handleClickOutside)
+  useOnClickOutside(wrapperRef, handleClickOutside);
   const handleSelect = (date: any) => {
     setStartDate(date.selection.startDate); // native Date object
     setEndDate(date.selection.endDate); // native Date object
   };
 
   const handleDislayLanguage = () => {
-    dispatch(changeComponent(<Language/>))
-    dispatch(setIsOpen(true))
-  }
+    dispatch(changeComponent(<Language />));
+    dispatch(setIsOpen(true));
+  };
   const handleClick = () => {
     (document.querySelector(".submenu-user") as HTMLElement).classList.toggle(
       "active"
     );
   };
- 
+
   const handleClickItemCenter = () => {
     if (itemCenterRef.current !== null) {
       if ((itemCenterRef.current as HTMLElement).classList.contains("active")) {
         (itemCenterRef.current as HTMLElement).classList.remove("active");
-
-       
       } else (itemCenterRef.current as HTMLElement).classList.add("active");
-
-     
     }
   };
 
-  const handleClickItemSearch = (value:string,id:number) =>{
-      setLocationInput(value)
-      setLocationId(id)
-  }
+  const handleClickItemSearch = (value: string, id: number) => {
+    setLocationInput(value);
+    setLocationId(id);
+  };
 
   const handleClickClose = () => {
-    (document.querySelector(".header__container-second-wrapper-bottom-item.close") as HTMLElement).classList.remove("active");
+    (
+      document.querySelector(
+        ".header__container-second-wrapper-bottom-item.close"
+      ) as HTMLElement
+    ).classList.remove("active");
   };
 
   const handleClickSubmit = () => {
     if (itemCenterRef.current) {
-
-        (itemCenterRef.current as HTMLElement).classList.remove("active");
+      (itemCenterRef.current as HTMLElement).classList.remove("active");
     }
-    dispatch(getRoomByLocationApi(locationId))
-  }
+    dispatch(getRoomByLocationApi(locationId));
+  };
 
   const handleClickItem = () => {
     document
@@ -180,38 +181,35 @@ const Header = (props: Props) => {
     }
   };
 
-  const handleChangeComponent = (value:string) => {
-      if(value === "register"){
-        dispatch(changeComponent(<RegisterModal/>))
-        dispatch(setIsOpen(true))
-      }else{
-        dispatch(changeComponent(<LoginModal/>))
-        dispatch(setIsOpen(true))
-      }
-    
-  }
+  const handleChangeComponent = (value: string) => {
+    if (value === "register") {
+      dispatch(changeComponent(<RegisterModal />));
+      dispatch(setIsOpen(true));
+    } else {
+      dispatch(changeComponent(<LoginModal />));
+      dispatch(setIsOpen(true));
+    }
+  };
 
-  const handleLocationZone = (address:string) => {
-      setLocationInput(address)
-  }
+  const handleLocationZone = (address: string) => {
+    setLocationInput(address);
+  };
 
   const logout = async () => {
-  await  removeStore(USER_LOGIN);
-  await removeStore(ACCESS_TOKEN);
-    
-    history.push('/')
-    dispatch(Logout())
-   
-   
+    await removeStore(USER_LOGIN);
+    await removeStore(ACCESS_TOKEN);
+
+    history.push("/");
+    dispatch(Logout());
   };
 
   return (
     <div ref={wrapperRef} className="header fixed">
       <div className="header__container">
         <div className="header__container-left">
-         <NavLink to='/'>
-         <img src={Logo} width={100} alt="" />
-         </NavLink>
+          <NavLink to="/">
+            <img src={Logo} width={100} alt="" />
+          </NavLink>
         </div>
         <div
           className="header__container-center"
@@ -219,15 +217,15 @@ const Header = (props: Props) => {
         >
           <div className="header__container-center-wrapper">
             <div>
-              <p>{t('content.anywhere')}</p>
+              <p>{t("content.anywhere")}</p>
             </div>
             <span className="line"></span>
             <div>
-              <p>{t('content.anyweek')}</p>
+              <p>{t("content.anyweek")}</p>
             </div>
             <span className="line"></span>
             <div>
-              <p>{t('content.addguests')}</p>
+              <p>{t("content.addguests")}</p>
               <BiSearch className="search-icon" />
             </div>
           </div>
@@ -237,9 +235,9 @@ const Header = (props: Props) => {
             onClick={handleClickItemCenter}
           >
             <div className="header__container-second-wrapper-top">
-              <p>{t('content.stay')}</p>
-              <p>{t('content.experience')}</p>
-              <p>{t('content.onlineExperiences')}</p>
+              <p>{t("content.stay")}</p>
+              <p>{t("content.experience")}</p>
+              <p>{t("content.onlineExperiences")}</p>
             </div>
             <div className="header__container-second-wrapper-bottom">
               <div className="wraper">
@@ -248,73 +246,106 @@ const Header = (props: Props) => {
                   onClick={handleClickItem}
                 >
                   <p>địa điểm</p>
-                  <input defaultValue={locationInput} type="text" placeholder="Tìm kiếm điểm đến" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocationInput(e.target.value)}/>
+                  <input
+                    defaultValue={locationInput}
+                    type="text"
+                    placeholder="Tìm kiếm điểm đến"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setLocationInput(e.target.value)
+                    }
+                  />
 
-                 {
-                  locationInput 
-                  ? <div className="location-search-input">
-                     {
-                      arrFilter.length !== 0 && <ul>
-                        
-                       {
-                        
-                           arrFilter?.map((item,index)=>(
-                             <li onClick={() => handleClickItemSearch(`${item.tenViTri} ${item.tinhThanh} ${item.quocGia}`,item.id)} key={index}> <span><MdLocationPin className="location-icon" /></span>{item.tenViTri} {item.tinhThanh} {item.quocGia}</li>
-                           ))
-                        
-
-                       }
-                     </ul>
-                     }
-                  </div> 
-                  :  <div className="location">
-                  <h1>Tìm kiếm theo Khu vực</h1>
-                  <div className="location-list">
-                    <div className="location-item" onClick={() => handleLocationZone('hồ chí minh')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Hồ Chí Minh</span>
+                  {locationInput ? (
+                    <div className="location-search-input">
+                      {arrFilter.length !== 0 && (
+                        <ul>
+                          {arrFilter?.map((item, index) => (
+                            <li
+                              onClick={() =>
+                                handleClickItemSearch(
+                                  `${item.tenViTri} ${item.tinhThanh} ${item.quocGia}`,
+                                  item.id
+                                )
+                              }
+                              key={index}
+                            >
+                              {" "}
+                              <span>
+                                <MdLocationPin className="location-icon" />
+                              </span>
+                              {item.tenViTri} {item.tinhThanh} {item.quocGia}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
-                    <div className="location-item" onClick={() => handleLocationZone('nha trang')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Nha Trang</span>
+                  ) : (
+                    <div className="location">
+                      <h1>Tìm kiếm theo Khu vực</h1>
+                      <div className="location-list">
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("hồ chí minh")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Hồ Chí Minh</span>
+                        </div>
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("nha trang")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Nha Trang</span>
+                        </div>
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("phú quốc")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Phú Quốc</span>
+                        </div>
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("tuy hòa")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Tuy Hòa</span>
+                        </div>
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("biên hòa")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Biên Hòa</span>
+                        </div>
+                        <div
+                          className="location-item"
+                          onClick={() => handleLocationZone("thuận an")}
+                        >
+                          <img
+                            src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
+                            alt=""
+                          />
+                          <span>Thuận An</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="location-item" onClick={() => handleLocationZone('phú quốc')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Phú Quốc</span>
-                    </div>
-                    <div className="location-item" onClick={() => handleLocationZone('tuy hòa')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Tuy Hòa</span>
-                    </div>
-                    <div className="location-item" onClick={() => handleLocationZone('biên hòa')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Biên Hòa</span>
-                    </div>
-                    <div className="location-item" onClick={() => handleLocationZone('thuận an')}>
-                      <img
-                        src="https://a0.muscache.com/im/pictures/4e762891-75a3-4fe1-b73a-cd7e673ba915.jpg?im_w=320"
-                        alt=""
-                      />
-                      <span>Thuận An</span>
-                    </div>
-                  </div>
-                </div>
-                 }
+                  )}
                 </div>
 
                 <div
@@ -439,9 +470,9 @@ const Header = (props: Props) => {
                     </div>
                   </div>
                   <button onClick={handleClickSubmit}>
-                   <NavLink to={`/search/${locationId}`}>
-                   <HiSearch className="hiSearch" />
-                   </NavLink>
+                    <NavLink to={`/search/${locationId}`}>
+                      <HiSearch className="hiSearch" />
+                    </NavLink>
                   </button>
                 </div>
               </div>
@@ -450,9 +481,12 @@ const Header = (props: Props) => {
         </div>
         <div className="header__container-right">
           <div className="header__container-right-item left">
-            <p>{t('content.airbnbyourhome')}</p>
+            <p>{t("content.airbnbyourhome")}</p>
           </div>
-          <div className="header__container-right-item center" onClick={handleDislayLanguage}>
+          <div
+            className="header__container-right-item center"
+            onClick={handleDislayLanguage}
+          >
             <RiGlobalLine className="ciGlobe" />
           </div>
           <div
@@ -468,32 +502,48 @@ const Header = (props: Props) => {
             <div className="submenu-user">
               {user ? (
                 <ul>
-                  <li>{t('content.message')}</li>
-                  <NavLink to={`/trip/${user.id}`}> <li className="active">{t('content.trip')}</li></NavLink>
-                  <NavLink to='/favorite'><li className="active">{t('content.favorites')}</li></NavLink>
+                  <li>{t("content.message")}</li>
+                  <NavLink to={`/trip/${user.id}`}>
+                    {" "}
+                    <li className="active">{t("content.trip")}</li>
+                  </NavLink>
+                  <NavLink to="/favorite">
+                    <li className="active">{t("content.favorites")}</li>
+                  </NavLink>
                   <hr />
-                  <li>{t('content.airbnbyourhome')}</li>
-                  <li>{t('content.hostanexperience')}</li>
-                  <NavLink to={`/user/${user?.id}`}> <li className="active">{t('content.account')}</li></NavLink>
+                  <li>{t("content.airbnbyourhome")}</li>
+                  <li>{t("content.hostanexperience")}</li>
+                  <NavLink to={`/user/${user?.id}`}>
+                    {" "}
+                    <li className="active">{t("content.account")}</li>
+                  </NavLink>
                   <hr />
-                  <li>{t('content.help')}</li>
-                  <li className="active" onClick={logout}>{t('content.logout')}</li>
+                  <li>{t("content.help")}</li>
+                  <li className="active" onClick={logout}>
+                    {t("content.logout")}
+                  </li>
                 </ul>
               ) : (
                 <>
                   <ul>
-                    <li className="active" onClick={() => handleChangeComponent('register')}>
-                    {t('content.register')}
+                    <li
+                      className="active"
+                      onClick={() => handleChangeComponent("register")}
+                    >
+                      {t("content.register")}
                     </li>
-                    <li className="active" onClick={() => handleChangeComponent('login')}>
-                    {t('content.login')}
+                    <li
+                      className="active"
+                      onClick={() => handleChangeComponent("login")}
+                    >
+                      {t("content.login")}
                     </li>
                   </ul>
                   <hr className="line" />
                   <ul>
-                    <li>{t('content.airbnbyourhome')}</li>
-                    <li>{t('content.hostanexperience')}</li>
-                    <li>{t('content.help')}</li>
+                    <li>{t("content.airbnbyourhome")}</li>
+                    <li>{t("content.hostanexperience")}</li>
+                    <li>{t("content.help")}</li>
                   </ul>
                 </>
               )}
@@ -502,7 +552,7 @@ const Header = (props: Props) => {
         </div>
       </div>
 
-        <NavBar perView={15}/>
+      <NavBar perView={15} />
     </div>
   );
 };

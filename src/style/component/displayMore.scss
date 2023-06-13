@@ -1,43 +1,39 @@
-.display-more{
-    width: 100%;
-    @include Responsive(MD){
-        width: 800px;
+.display-more {
+  width: 100%;
+  @include Responsive(MD) {
+    width: 800px;
+  }
+  &-header {
+    img {
+      width: 200px;
+      margin-bottom: 20px;
     }
-    &-header{
-        img{
-            width: 200px;
-            margin-bottom: 20px;
-        }
-
+  }
+  hr {
+    margin: 20px 0;
+  }
+  &-body {
+    @include Responsive(MD) {
+      display: flex;
     }
-    hr{
-        margin: 20px 0;
+    &-left {
+      flex: 1;
     }
-    &-body{
-        
-        @include Responsive(MD){
-            display: flex;
-        }
-        &-left{
-            flex: 1;
-        }
-        &-right{
-            flex: 1;
-        }
-        .item{
-            margin:20px 10px;
-            h1{
-                margin: 10px 0;
-            }
-            p{
-                color: $textSub;
-                line-height: 20px;
-            }
-        }
+    &-right {
+      flex: 1;
     }
-    &-bottom{
-        margin-top: 20px;
+    .item {
+      margin: 20px 10px;
+      h1 {
+        margin: 10px 0;
+      }
+      p {
+        color: $textSub;
+        line-height: 20px;
+      }
     }
-
-
+  }
+  &-bottom {
+    margin-top: 20px;
+  }
 }

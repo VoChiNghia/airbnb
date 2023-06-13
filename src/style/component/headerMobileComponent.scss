@@ -1,135 +1,122 @@
-.header__mobile{
-    
-    position: fixed;
-    justify-content: space-between;
-    width: 100%;
+.header__mobile {
+  position: fixed;
+  justify-content: space-between;
+  width: 100%;
+  background-color: white;
+  top: 0;
+  z-index: 3;
+  padding: 10px 20px 0 20px;
+  box-shadow: $box-shadow;
+
+  &__top {
+    .wrapper {
+      display: flex;
+      align-items: center;
+      border: 1px solid $border;
+      box-shadow: $box-shadow;
+      border-radius: 30px;
+      padding: 10px;
+      .search-icon {
+        margin: 0 10px;
+        font-size: 20px;
+      }
+      .info {
+        span {
+          color: $textSub;
+        }
+      }
+    }
+  }
+
+  &__search {
+    position: absolute;
+    top: 0px;
     background-color: white;
-    top: 0;
-    z-index: 3;
-    padding: 10px 20px 0 20px;
-    box-shadow: $box-shadow;
-   
-    &__top{
-        .wrapper{
-            display: flex;
-            align-items: center;
-            border: 1px solid $border;
-            box-shadow: $box-shadow;
-            border-radius:30px;
-            padding:10px;
-            .search-icon{
-                margin: 0 10px;
-                font-size: 20px;
-            }
-            .info{
-                span{
-                    color: $textSub;
-                }
-            }
-
-           
-        }
+    width: 100%;
+    left: 0;
+    z-index: 2;
+    transform: translateY(-110%);
+    &.active {
+      transform: translateY(0%);
+    }
+    h2 {
+      font-weight: bold;
+      font-size: 18px;
     }
 
-    &__search{
-        position: absolute;
-        top: 0px;
-        background-color:white;
-        width: 100%;
-        left: 0;
-        z-index: 2;
-        transform: translateY(-110%);
-        &.active{
-             transform: translateY(0%);
+    .wrapper {
+      .head {
+        color: red;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+      }
+      .body {
+        h1 {
+          font-size: 20px;
         }
-        h2{
-            font-weight: bold;
+        &-item {
+          display: flex;
+          align-items: center;
+          padding: 10px 20px;
+          border: 1px solid #333;
+          margin: 40px 20px;
+          border-radius: 10px;
+          .search-icon {
             font-size: 18px;
+            margin-right: 20px;
+          }
+          input {
+            width: 100%;
+          }
         }
-       
-        .wrapper{
-            .head{
-                color:red;
-                display: flex;
-                justify-content:space-between;
-                padding:20px;
-            }
-            .body{
-                
-                h1{
-                    font-size: 20px;
-                }
-                &-item{
-                    display: flex;
-                    align-items:center;
-                    padding:10px 20px;
-                    border:1px solid #333;
-                     margin: 40px 20px;
-                     border-radius:10px;
-                    .search-icon{
-                      font-size: 18px;
-                      margin-right: 20px;
-                     
-                    }
-                    input{
-                        width: 100%;
-                    }
-                }
 
-                &-time{
-                    justify-content: space-between;
-                }
-                 &-customer{
-                    justify-content: space-between;
-                }
-
-                .location-search-input{
-                    
-                    background: white;
-                   width: 100%;
-                    border-radius: 20px;
-                    box-shadow: $box-shadow;
-                    ul{
-                        padding:0 20px;
-                        li{
-                            padding: 10px 0;
-                            display: flex;
-                            align-items: center;
-                            span{
-                                margin: 0 10px;
-                                .location-icon{
-                                    font-size: 20px;
-                                }
-                            }
-                            &:hover{
-                                background-color: $hoverColor;
-                                text-decoration: none;
-                                cursor: pointer;
-                            }
-                        }
-                    }
-                }
-
-
-                
-            }
-            .date-range-mobile{
-                display: none;
-                &.active{
-                    display: block;
-                }
-                
-            }
-            .btn-search{
-                background-color:$mainColor;
-                padding: 15px 30px;
-                border-radius:30px;
-                color:white;
-                margin: 20px;
-             
-            }
+        &-time {
+          justify-content: space-between;
         }
+        &-customer {
+          justify-content: space-between;
+        }
+
+        .location-search-input {
+          background: white;
+          width: 100%;
+          border-radius: 20px;
+          box-shadow: $box-shadow;
+          ul {
+            padding: 0 20px;
+            li {
+              padding: 10px 0;
+              display: flex;
+              align-items: center;
+              span {
+                margin: 0 10px;
+                .location-icon {
+                  font-size: 20px;
+                }
+              }
+              &:hover {
+                background-color: $hoverColor;
+                text-decoration: none;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .date-range-mobile {
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+      .btn-search {
+        background-color: $mainColor;
+        padding: 15px 30px;
+        border-radius: 30px;
+        color: white;
+        margin: 20px;
+      }
     }
-    
+  }
 }
-

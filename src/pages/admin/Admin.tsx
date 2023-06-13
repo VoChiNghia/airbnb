@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DispatchType, RootState } from "../../store/store";
-import { deleteUser, getAllUsedApi } from "../../redux/userReducer";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { BiUser } from "react-icons/bi";
+import { GoLocation } from "react-icons/go";
+import { GiBunkBeds } from "react-icons/gi";
 
-import ModalAddUser from "../../component/adminComponent/ModalAddUser";
-import { changeComponent, setIsOpen } from "../../redux/modalReducer";
-import {BiUser} from 'react-icons/bi'
-import {GoLocation} from 'react-icons/go'
-import {GiBunkBeds} from 'react-icons/gi'
-import TableUserAdmin from "../../component/adminComponent/TableUserAdmin";
-import TableBookRoomAdmin from "../../component/adminComponent/TableBookRoomAdmin";
-import TableLocationAdmin from "../../component/adminComponent/TableLocationAdmin";
-import AddImageAdmin from "../../component/adminComponent/AddImageAdmin";
-
-type Props = {};
-
-const Admin = (props: Props) => {
-
-  const {component} = useSelector((state:RootState) => state.tableModal)
-
-
-
+const Admin = () => {
+  const { component } = useSelector((state: RootState) => state.tableModal);
 
   return (
     <div>
@@ -31,7 +17,7 @@ const Admin = (props: Props) => {
           <div className="overview__container-item">
             <div className="overview__container-item-wrapper">
               <div className="icon-wrapper">
-                <BiUser className="icon"/>
+                <BiUser className="icon" />
               </div>
               <div className="info">
                 <p> accounters</p>
@@ -44,7 +30,7 @@ const Admin = (props: Props) => {
           <div className="overview__container-item">
             <div className="overview__container-item-wrapper">
               <div className="icon-wrapper">
-                <GoLocation className="icon"/>
+                <GoLocation className="icon" />
               </div>
               <div className="info">
                 <p> accounters</p>
@@ -57,7 +43,7 @@ const Admin = (props: Props) => {
           <div className="overview__container-item">
             <div className="overview__container-item-wrapper">
               <div className="icon-wrapper">
-                <GiBunkBeds className="icon"/>
+                <GiBunkBeds className="icon" />
               </div>
               <div className="info">
                 <p> accounters</p>
@@ -67,12 +53,10 @@ const Admin = (props: Props) => {
             <button>View All</button>
           </div>
 
-
-
           <div className="overview__container-item">
             <div className="overview__container-item-wrapper">
               <div className="icon-wrapper">
-                <GiBunkBeds className="icon"/>
+                <GiBunkBeds className="icon" />
               </div>
               <div className="info">
                 <p> accounters</p>
@@ -84,12 +68,7 @@ const Admin = (props: Props) => {
         </div>
       </div>
 
-       {
-       component
-       }
-
-      
-      
+      {component}
     </div>
   );
 };

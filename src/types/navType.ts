@@ -1,6 +1,6 @@
 type NavbarType = {
-    img:string,
-    name:string
-}
+  img: string;
+  name: string;
+};
 
-export default NavbarType
+export default NavbarType;

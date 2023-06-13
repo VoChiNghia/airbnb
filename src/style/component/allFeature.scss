@@ -1,12 +1,12 @@
-.all__feature{
-    width: 400px;
-    &__container{
-        h1{
-            font-size: 20px;
-        }
-        p{
-            margin: 40px 0;
-            color: $textSub;
-        }
+.all__feature {
+  width: 400px;
+  &__container {
+    h1 {
+      font-size: 20px;
     }
+    p {
+      margin: 40px 0;
+      color: $textSub;
+    }
+  }
 }

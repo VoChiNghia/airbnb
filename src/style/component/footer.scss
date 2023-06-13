@@ -1,69 +1,63 @@
-.footer{
+.footer {
+  border-top: 1px solid $border;
+  padding-top: 40px;
+  &__container {
+    padding: 0 20px;
+    @include Responsive(MD) {
+      padding: 0 80px;
+    }
+    display: grid;
+    grid-template-columns: auto;
+
+    @include Responsive(SM) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @include Responsive(XS) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include Responsive(MD) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .footer__item {
+      h1 {
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      ul {
+        li {
+          padding: 10px 0;
+          color: $textSub;
+        }
+      }
+    }
+  }
+  .footer-bottom {
+    display: none;
+    justify-content: space-between;
+    padding: 20px 80px;
     border-top: 1px solid $border;
-    padding-top: 40px;
-    &__container{
-        padding: 0 20px;
-        @include Responsive(MD){
-            padding: 0 80px;
-        }
-        display: grid;
-        grid-template-columns: auto;
-        
-        @include Responsive(SM){
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-        @include Responsive(XS){
-            grid-template-columns: 1fr 1fr;
-        }
-        @include Responsive(MD){
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-        .footer__item{
-            h1{
-                font-weight: bold;
-                margin: 10px 0;
-            }
-            ul{
-                li{
-                    padding:10px 0;
-                    color: $textSub;
-                }
-            }
-        }
-    }
-    .footer-bottom{
-       
-        
-       display: none;
-       justify-content: space-between;
-        padding: 20px 80px;
-        border-top: 1px solid $border;
 
-        @include Responsive(SM){
-            display: flex;
-        }
-        .footer-bottom-left{
-            .footer-bottom-left-item{
-                color: $textSub;
-                margin-right:10px;
-                
-            }
-            
-        }
-        .footer-bottom-right{
-            display: flex;
-            align-items: center;
-            .footer-bottom-left-item{
-                display: flex;
-                align-items: center;
-                color: $text;
-                margin-right:10px;
-                .global-icon{
-                    margin: 0 5px;
-                    
-                }
-            }
-        }
+    @include Responsive(SM) {
+      display: flex;
     }
-
+    .footer-bottom-left {
+      .footer-bottom-left-item {
+        color: $textSub;
+        margin-right: 10px;
+      }
+    }
+    .footer-bottom-right {
+      display: flex;
+      align-items: center;
+      .footer-bottom-left-item {
+        display: flex;
+        align-items: center;
+        color: $text;
+        margin-right: 10px;
+        .global-icon {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
 }

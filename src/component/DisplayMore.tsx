@@ -1,8 +1,6 @@
 import React from "react";
 const logo = require("../assest/image/aircover.jpg");
-type Props = {};
-
-const DisplayMore = (props: Props) => {
+const DisplayMore = () => {
   return (
     <div className="display-more">
       <div className="display-more-header">

@@ -1,144 +1,130 @@
-.trip{
-   margin-top: 10px;
-    min-height: 100vh;
-    @include Responsive(SM){
-        margin-top: 40px;
+.trip {
+  margin-top: 10px;
+  min-height: 100vh;
+  @include Responsive(SM) {
+    margin-top: 40px;
+  }
+  @include Responsive(SM) {
+    margin-top: 80px;
+  }
+
+  &__container {
+    width: 100%;
+    padding: 0 10px;
+    @include Responsive(MD) {
+      margin: 0 10px;
     }
-    @include Responsive(SM){
-        margin-top: 80px;
+    h1 {
+      font-size: 30px;
     }
-  
-    &__container{
-        width: 100%;
-       padding: 0 10px;
-        @include Responsive(MD){
-            margin: 0 10px;
-        }
-        h1{
-            font-size: 30px;
 
-        }
+    hr {
+      margin: 40px 0;
+    }
 
-        hr{
-            margin: 40px 0;
+    &__back {
+      margin-bottom: 20px;
+      button {
+        background-color: black;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        position: relative;
+        .back-icon {
+          color: white;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
         }
+      }
+      @include Responsive(MD) {
+        display: none;
+      }
+    }
 
-        &__back{
-            margin-bottom: 20px;
-            button{
-                background-color:black;
-           height: 30px;
-           width: 30px;
-           border-radius:50%;
-           position: relative;
-           .back-icon{
-            color: white;
+    .trip__info {
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        padding: 20px 0;
+      }
+      button {
+        padding: 15px 30px;
+        background-color: transparent;
+        border: 1px solid #333;
+        border-radius: 10px;
+      }
+    }
+    &__wrapper {
+      @include Responsive(MD) {
+        display: flex;
+      }
+      .left {
+        flex: 2;
+
+        .trip__item {
+          border: 1px solid $border;
+          position: relative;
+          margin-bottom: 20px;
+
+          border-radius: 10px;
+          box-shadow: $box-shadow;
+          overflow: hidden;
+
+          @include Responsive(MD) {
+            display: flex;
+            margin-right: 20px;
+          }
+
+          img {
+            width: 200%;
+            object-fit: cover;
+            object-position: 0% 40%;
+            margin-right: 20px;
+            @include Responsive(MD) {
+              width: 200px;
+            }
+          }
+
+          &__info {
+            padding: 10px;
+            h3 {
+              padding: 10px 0;
+              font-size: 20px;
+              font-weight: 400;
+            }
+            .trip_icon {
+              font-size: 24px;
+
+              margin-right: 10px;
+            }
+          }
+
+          button {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-           }
+            top: -1px;
+            right: -1px;
+            background-color: transparent;
+            border: 1px solid $mainColor;
+            padding: 5px 10px;
+            border-bottom-left-radius: 10px;
+            box-shadow: -1px 1px 2px 0px rgba(246, 9, 9, 0.75);
+            -webkit-box-shadow: -1px 1px 2px 0px rgba(246, 9, 9, 0.75);
+            -moz-box-shadow: -1px 1px 2px 0px rgba(246, 9, 9, 0.75);
+            &:active {
+              @include Active-button;
             }
-            @include Responsive(MD){
-               display: none;
+            &:hover {
+              color: $mainColor;
             }
+          }
         }
-
-        .trip__info{
-            
-            h2{
-                font-size: 20px;
-             
-            }
-            p{
-                padding: 20px 0;
-            }
-            button{
-                padding: 15px 30px;
-                background-color: transparent;
-                border:1px solid #333;
-                border-radius: 10px;
-            }
-        }
-        &__wrapper{
-           
-                @include Responsive(MD){
-                    display: flex;
-                }
-                .left{
-                    flex: 2;
-                    
-                    
-                    .trip__item{
-                        border: 1px solid $border;
-                        position: relative;
-                       margin-bottom: 20px;
-                 
-                       border-radius: 10px;
-                       box-shadow: $box-shadow;
-                       overflow: hidden;
-                      
-
-                       @include Responsive(MD){
-                        display: flex;
-                        margin-right: 20px;
-                    }
-                       
-                        
-                        img{
-                            width: 200%;
-                            object-fit: cover;
-                            object-position: 0% 40%;
-                            margin-right: 20px;
-                            @include Responsive(MD){
-                                width: 200px;
-                            }
-                        }
-                       
-                        &__info{
-                            
-                            padding: 10px;
-                            h3{
-                                padding: 10px 0;
-                                font-size: 20px;
-                                font-weight: 400;
-                            }
-                            .trip_icon{
-                                font-size: 24px;
-                              
-                                margin-right: 10px;
-                            }
-
-                          
-                        }
-
-                        button{
-                            position: absolute;
-                            top: -1px;
-                            right: -1px;
-                            background-color: transparent;
-                            border:1px solid $mainColor;
-                            padding: 5px 10px;
-                           border-bottom-left-radius: 10px;
-                           box-shadow: -1px 1px 2px 0px rgba(246,9,9,0.75);
-                           -webkit-box-shadow: -1px 1px 2px 0px rgba(246,9,9,0.75);
-                           -moz-box-shadow: -1px 1px 2px 0px rgba(246,9,9,0.75);
-                           &:active{
-                            @include Active-button;
-                            
-                           }
-                           &:hover{
-                            color: $mainColor;
-                           }
-                        }
-                        
-                    }
-                }
-                .right{
-                    flex: 1;
-                }
-            
-        }
-        
+      }
+      .right {
+        flex: 1;
+      }
     }
+  }
 }

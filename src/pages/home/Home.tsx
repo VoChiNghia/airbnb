@@ -1,71 +1,57 @@
-import React, { useEffect } from 'react'
-import {useSelector,useDispatch} from 'react-redux'
-import { DispatchType, RootState } from '../../store/store'
-import { getRoomApi, loadingReducer } from '../../redux/roomReducer'
-import Cart from '../../component/Cart'
-import { Room } from '../../types/roomReducerType'
-import {BsFillMapFill} from 'react-icons/bs'
-import CardLoading from '../../loading/CardLoading'
-import { NavLink } from 'react-router-dom'
-import LazyLoad from 'react-lazyload'
-import { useTranslation } from 'react-i18next';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { DispatchType, RootState } from "../../store/store";
+import { getRoomApi, loadingReducer } from "../../redux/roomReducer";
+import Cart from "../../component/Cart";
+import { Room } from "../../types/roomReducerType";
+import { BsFillMapFill } from "react-icons/bs";
+import CardLoading from "../../loading/CardLoading";
+import { NavLink } from "react-router-dom";
+import LazyLoad from "react-lazyload";
+import { useTranslation } from "react-i18next";
 
+const Home = () => {
+  const { t } = useTranslation();
+  const { roomState, loading } = useSelector(
+    (state: RootState) => state.roomReducer
+  );
 
-type Props = {}
-
-const Home = (props: Props) => {
-
-  
-  const { t } = useTranslation()
-  const {roomState,loading} = useSelector((state:RootState) => state.roomReducer)
-
-
-  const dispatch:DispatchType = useDispatch()
+  const dispatch: DispatchType = useDispatch();
 
   const getRoomFromApi = async () => {
-    const action = getRoomApi()
-     await dispatch(action)
-     await dispatch(loadingReducer(false))
-  }
+    const action = getRoomApi();
+    await dispatch(action);
+    await dispatch(loadingReducer(false));
+  };
 
-  useEffect(() =>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-    getRoomFromApi()
-   
-      
-  
-  },[])
+    getRoomFromApi();
+  }, []);
 
   return (
     <div className="home">
       <div className="home__container">
-        {
-          loading ? Array(20).fill(1).map((i,index) => <CardLoading key={index}/>) :
-            roomState?.map((item:Room,index:number)=>(
-              <LazyLoad key={index} placeholder={<CardLoading/>}>
-          <Cart key={index} data={item}/>
-        </LazyLoad>
-            
-            ))
-            
-            
-        }
+        {loading
+          ? Array(20)
+              .fill(1)
+              .map((i, index) => <CardLoading key={index} />)
+          : roomState?.map((item: Room, index: number) => (
+              <LazyLoad key={index} placeholder={<CardLoading />}>
+                <Cart key={index} data={item} />
+              </LazyLoad>
+            ))}
 
-          <NavLink to='/map'>
+        <NavLink to="/map">
           <div className="show-map">
-           <span>{t('content.map')}</span>
-            <BsFillMapFill/>
-            
+            <span>{t("content.map")}</span>
+            <BsFillMapFill />
           </div>
-          </NavLink>
-          <div>
-              
-          </div>
-        
+        </NavLink>
+        <div></div>
       </div>
-      
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

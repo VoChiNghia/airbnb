@@ -4,8 +4,6 @@ import * as yup from "yup";
 import { addBookRoom } from "../../redux/bookRoomReducer";
 import { DispatchType } from "../../store/store";
 import { useDispatch } from "react-redux";
-
-type Props = {};
 export interface AddBookRoom {
   tenPhong: string;
   moTa: string;
@@ -44,8 +42,7 @@ const initialValues: AddBookRoom = {
   phongTam: 0,
 };
 const AddRoomModal = () => {
-
-    const dispatch:DispatchType = useDispatch()
+  const dispatch: DispatchType = useDispatch();
 
   return (
     <div className="add__room__modal">
@@ -54,10 +51,9 @@ const AddRoomModal = () => {
         validationSchema={yup.object().shape({
           tenPhong: yup.string().required(),
           moTa: yup.string().required(),
-         
         })}
         onSubmit={(values: AddBookRoom) => {
-          dispatch(addBookRoom(values))
+          dispatch(addBookRoom(values));
         }}
       >
         {({ values, errors, touched }) => (
@@ -122,66 +118,94 @@ const AddRoomModal = () => {
               </div>
 
               <div className="form-group-checkbox-container">
-               
-                  <div className="form-group-checkbox">
-                    <p className={values.mayGiat ? 'active' : ''}>Máy giặt</p>
-                  
-                    <Field className='form-checkbox' type="checkbox" name="mayGiat" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.mayGiat ? "active" : ""}>Máy giặt</p>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.banLa ? 'active' : ''}>Bàn là</p>
-                    <Field className='form-checkbox' type="checkbox" name="banLa" />
-                    <div className="slider"></div>
-                  </div>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="mayGiat"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.tivi ? 'active' : ''}>Tivi</p>
-                    <Field className='form-checkbox' type="checkbox" name="tivi" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.banLa ? "active" : ""}>Bàn là</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="banLa"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.dieuHoa ? 'active' : ''}>Điều hòa</p>
-                    <Field className='form-checkbox' type="checkbox" name="dieuHoa" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.tivi ? "active" : ""}>Tivi</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="tivi"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.wifi ? 'active' : ''}>Wifi</p>
-                    <Field className='form-checkbox' type="checkbox" name="wifi" />
-                    <div className="slider"></div>
-                  </div>
-                
+                <div className="form-group-checkbox">
+                  <p className={values.dieuHoa ? "active" : ""}>Điều hòa</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="dieuHoa"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                
-                  <div className="form-group-checkbox">
-                  <p className={values.bep ? 'active' : ''}>Bếp</p>
-                    <Field className='form-checkbox' type="checkbox" name="bep" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.wifi ? "active" : ""}>Wifi</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="wifi"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.doXe ? 'active' : ''}>Đỗ xe</p>
-                    <Field className='form-checkbox' type="checkbox" name="doXe" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.bep ? "active" : ""}>Bếp</p>
+                  <Field className="form-checkbox" type="checkbox" name="bep" />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.hoBoi ? 'active' : ''}>Hồ bơi</p>
-                    <Field className='form-checkbox' type="checkbox" name="hoBoi" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.doXe ? "active" : ""}>Đỗ xe</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="doXe"
+                  />
+                  <div className="slider"></div>
+                </div>
 
-                  <div className="form-group-checkbox">
-                  <p className={values.banUi ? 'active' : ''}>Bàn ủi</p>
-                    <Field className='form-checkbox' type="checkbox" name="banUi" />
-                    <div className="slider"></div>
-                  </div>
+                <div className="form-group-checkbox">
+                  <p className={values.hoBoi ? "active" : ""}>Hồ bơi</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="hoBoi"
+                  />
+                  <div className="slider"></div>
+                </div>
+
+                <div className="form-group-checkbox">
+                  <p className={values.banUi ? "active" : ""}>Bàn ủi</p>
+                  <Field
+                    className="form-checkbox"
+                    type="checkbox"
+                    name="banUi"
+                  />
+                  <div className="slider"></div>
                 </div>
               </div>
-            
+            </div>
 
             <div className="form-button">
               <button type="submit" className="login-button">

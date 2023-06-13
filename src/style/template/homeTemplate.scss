@@ -1,8 +1,6 @@
-.home-template{
-
-
-    padding: 0 0px;
-    @include Responsive(MD){
-        padding: 0 80px;
-    }
+.home-template {
+  padding: 0 0px;
+  @include Responsive(MD) {
+    padding: 0 80px;
+  }
 }

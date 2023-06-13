@@ -1,29 +1,27 @@
-.header__mobile__bottom{
-    background-color: white;
-    width: 100%;
-    padding: 10px 0;
-    position:fixed;
-    bottom:0;
-    left:0;
-    z-index: 999;
-    @include Responsive(MD){
-       display: none;
-    }
-    &__container{
-        display: flex;
-        justify-content:space-evenly;
-        
-        div{
-            text-align: center;
-            &.active .icon{
-                color:$mainColor;
-            }
-            .icon{
-                font-size: 24px;
-                color: $textSub;
-            }
+.header__mobile__bottom {
+  background-color: white;
+  width: 100%;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  @include Responsive(MD) {
+    display: none;
+  }
+  &__container {
+    display: flex;
+    justify-content: space-evenly;
 
-        }
-    } 
-       
+    div {
+      text-align: center;
+      &.active .icon {
+        color: $mainColor;
+      }
+      .icon {
+        font-size: 24px;
+        color: $textSub;
+      }
+    }
+  }
 }

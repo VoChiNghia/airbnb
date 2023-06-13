@@ -1,26 +1,16 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Header from '../component/Header'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "../component/Footer";
 
-import Footer from '../component/Footer'
-import NavBar from '../component/NavBar'
-import HeaderMobileComponent from '../component/HeaderMobileComponent'
-import Responesive from '../HOC/Responesive'
-
-type Props = {}
-
-const MobileDetailTemplate = (props: Props) => {
+const MobileDetailTemplate = () => {
   return (
     <>
-    <div className="mobile-detail-template">
-        <main>
-            {<Outlet/>}
-        </main>
-        
-    </div>
-    <Footer/>
+      <div className="mobile-detail-template">
+        <main>{<Outlet />}</main>
+      </div>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default MobileDetailTemplate
+export default MobileDetailTemplate;
