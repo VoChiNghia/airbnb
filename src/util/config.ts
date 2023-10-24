@@ -2,7 +2,7 @@ import axios from "axios";
 export const ACCESS_TOKEN = "accessToken";
 export const USER_LOGIN = "userLogin";
 const TOKEN_CYBERSOFT =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJOb2RlanMgMjkiLCJIZXRIYW5TdHJpbmciOiIxOS8wOS8yMDIzIiwiSGV0SGFuVGltZSI6IjE2OTUwODE2MDAwMDAiLCJuYmYiOjE2Nzc2MDM2MDAsImV4cCI6MTY5NTIyOTIwMH0.ZLLpdVZKDiSaVmcqW8ABNFiLYlwLSlO9t0GVSWuFka4";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAwMSIsIkhldEhhblN0cmluZyI6IjMwLzA5LzIwMzEiLCJIZXRIYW5UaW1lIjoiMTk0ODQ5MjgwMDAwMCIsIm5iZiI6MTYwMTIyNjAwMCwiZXhwIjoxOTQ4NjQwNDAwfQ.4l-eTzlgVnFczfvc2Or7BNPOcaesY3Kwc8RoNm-o-6M";
 
 export const { saveStore, saveStoreJson, getStore, getStoreJson, removeStore } =
   {
